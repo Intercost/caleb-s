@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="htmlElement">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caleb Howard | Skills</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1', // Indigo 500
+                        secondary: '#4F46E5', // Indigo 600
+                        darkbg: '#0F172A', // Slate 900
+                        darksurface: '#1E293B', // Slate 800
+                        lighttext: '#F8FAFC', // Slate 50
+                        mutedtext: '#94A3B8', // Slate 400,
+                        codebg: '#1a202c' // Custom for code blocks
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: theme('colors.darkbg');
+            color: theme('colors.lighttext');
+        }
+        .hero-bg {
+            background: linear-gradient(to right bottom, theme('colors.darkbg'), theme('colors.darksurface'));
+        }
+        .section-separator {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: theme('colors.primary');
+            margin: 0 auto 40px;
+            border-radius: 2px;
+        }
+        @media (min-width: 768px) {
+            .section-separator {
+                margin: 0 0 40px; /* Align left on larger screens */
+            }
+        }
+        /* Basic animation for hero elements */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down { animation: fadeInDown 0.8s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+
+        /* Light mode overrides */
+        html.light body {
+            background-color: #F1F5F9; /* slate-100 */
+            color: #0F172A; /* slate-900 */
+        }
+        html.light .bg-darkbg { background-color: #F1F5F9; }
+        html.light .bg-darksurface { background-color: #FFFFFF; }
+        html.light .text-lighttext { color: #0F172A; }
+        html.light .text-mutedtext { color: #64748B; }
+        html.light .border-darksurface { border-color: #E2E8F0; }
+        html.light .bg-primary\/20 { background-color: rgba(99, 102, 241, 0.1); }
+        html.light .codebg { background-color: #E2E8F0; }
+        html.light .hero-bg {
+            background: linear-gradient(to right bottom, #E2E8F0, #FFFFFF);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">Caleb Howard</a>
+            <div class="flex items-center space-x-4">
+                <!-- Desktop Nav -->
+                <div class="space-x-4 hidden md:flex">
+                    <a href="about.html" class="text-mutedtext hover:text-lighttext transition-colors">About</a>
+                    <a href="achievements.html" class="text-mutedtext hover:text-lighttext transition-colors">Achievements</a>
+                    <a href="skills.html" class="text-mutedtext hover:text-lighttext transition-colors">Skills</a>
+                    <a href="contact.html" class="text-mutedtext hover:text-lighttext transition-colors">Contact</a>
+                </div>
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full text-mutedtext hover:text-lighttext focus:outline-none focus:ring-2 focus:ring-primary transition-colors">
+                    <svg id="dark-mode-svg" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                    <svg id="light-mode-svg" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m8.66-8.66l-.707-.707M16.34 16.34l.707.707M16.34 7.66l.707-.707M7.66 16.34l-.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path>
+                    </svg>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-mutedtext hover:text-lighttext focus:outline-none focus:ring-2 focus:ring-primary transition-colors">
+                    <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2">
+            <div class="flex flex-col space-y-2 px-4">
+                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    About
+                </a>
+                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
+                    Achievements
+                </a>
+                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4M17 17h4M16 3h4M3 16h4M17 3v4M3 3h.01M12 8v4l3 3m-3-3l-3 3"></path></svg>
+                    Skills
+                </a>
+                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-24 px-4 bg-darksurface">
+            <div class="container mx-auto max-w-5xl">
+                <h2 class="text-4xl font-bold text-lighttext mb-10 text-center md:text-left">My Skills</h2>
+                <div class="section-separator mx-auto md:mx-0"></div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center">
+                    <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">Python</p>
+                    </div>
+                    <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">JavaScript</p>
+                    </div>
+                    <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">HTML5</p>
+                    </div>
+                    <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">CSS3</p>
+                    </div>
+                    <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">Tailwind CSS</p>
+                    </div>
+                    <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-original.svg" alt="Django" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">Django</p>
+                    </div>
+                    <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">TensorFlow</p>
+                    </div>
+                    <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">Git</p>
+                    </div>
+                    <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">Linux</p>
+                    </div>
+                     <div class="bg-darkbg p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-16 h-16 mb-3">
+                        <p class="text-lg font-medium text-lighttext">Docker</p>
+                    </div>
+                </div>
+
+                <!-- AI-Driven Development Philosophy & Skills -->
+                <h3 class="text-3xl font-bold text-lighttext mb-6 text-center md:text-left mt-16">AI-Driven Development Philosophy & Skills</h3>
+                <div class="section-separator mx-auto md:mx-0 !w-60"></div>
+                <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface">
+                    <p class="text-lighttext mb-4">How Utilizing Advanced AI Tools (like Sova Alpha) Demonstrates My Abilities:</p>
+                    <ul class="list-disc list-inside text-mutedtext space-y-4 ml-4">
+                        <li>
+                            <span class="font-semibold text-primary">Ability to Leverage Cutting-Edge Technology for Enhanced Productivity:</span>
+                            <p class="text-lighttext ml-2 mt-1">
+                                "My workflow integrates advanced AI tools like Sova Alpha, demonstrating proficiency in leveraging cutting-edge technology to significantly accelerate project initiation and enhance overall development productivity. This allows for a streamlined approach to building robust software foundations."
+                            </p>
+                        </li>
+                        <li>
+                            <span class="font-semibold text-primary">Ability to Focus on High-Level Problem-Solving and Innovation Rather Than Repetitive Setup:</span>
+                            <p class="text-lighttext ml-2 mt-1">
+                                "By delegating foundational architectural tasks to intelligent AI agents, I am empowered to pivot my focus towards complex, high-level problem-solving, innovative feature development, and refining user experience. This strategic use of AI ensures that my time is dedicated to creative and critical challenges."
+                            </p>
+                        </li>
+                        <li>
+                            <span class="font-semibold text-primary">Ability to Manage and Understand Complex Software Architectures:</span>
+                            <p class="text-lighttext ml-2 mt-1">
+                                "Working alongside AI-driven architects like Sova Alpha has deepened my practical understanding of generating and managing complex, multi-file software architectures. It showcases my capability to oversee and direct sophisticated automated development processes, ensuring robust and scalable project structures."
+                            </p>
+                        </li>
+                        <li>
+                            <span class="font-semibold text-primary">Ability to Adopt Modern, Efficient Development Workflows:</span>
+                            <p class="text-lighttext ml-2 mt-1">
+                                "My adoption of AI-assisted development practices reflects a commitment to modern, efficient, and best-practice-aligned workflows. This approach minimizes boilerplate, standardizes project setup, and optimizes the development lifecycle, highlighting an adaptive and future-oriented skill set."
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm">
+        <p>&copy; 2025 Caleb Howard. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="htmlElement">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caleb Howard | Sova's Gallery</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1', // Indigo 500
+                        secondary: '#4F46E5', // Indigo 600
+                        darkbg: '#0F172A', // Slate 900
+                        darksurface: '#1E293B', // Slate 800
+                        lighttext: '#F8FAFC', // Slate 50
+                        mutedtext: '#94A3B8', // Slate 400,
+                        codebg: '#1a202c' // Custom for code blocks
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: theme('colors.darkbg');
+            color: theme('colors.lighttext');
+        }
+        .hero-bg {
+            background: linear-gradient(to right bottom, theme('colors.darkbg'), theme('colors.darksurface'));
+        }
+        /* Light mode overrides */
+        html.light body {
+            background-color: #F1F5F9; /* slate-100 */
+            color: #0F172A; /* slate-900 */
+        }
+        html.light .bg-darkbg { background-color: #F1F5F9; }
+        html.light .bg-darksurface { background-color: #FFFFFF; }
+        html.light .text-lighttext { color: #0F172A; }
+        html.light .text-mutedtext { color: #64748B; }
+        html.light .border-darksurface { border-color: #E2E8F0; }
+
+        .gallery-item {
+            border: 1px solid theme('colors.darksurface');
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        html.light .gallery-item {
+            border-color: #E2E8F0;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">Caleb Howard</a>
+            <div class="flex items-center space-x-4">
+                <!-- Desktop Nav -->
+                <div class="space-x-4 hidden md:flex">
+                    <a href="about.html" class="text-mutedtext hover:text-lighttext transition-colors">About</a>
+                    <a href="achievements.html" class="text-mutedtext hover:text-lighttext transition-colors">Projects & Achievements</a>
+                    <a href="skills.html" class="text-mutedtext hover:text-lighttext transition-colors">Skills</a>
+                    <a href="contact.html" class="text-mutedtext hover:text-lighttext transition-colors">Contact</a>
+                </div>
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full text-mutedtext hover:text-lighttext focus:outline-none focus:ring-2 focus:ring-primary transition-colors">
+                    <svg id="dark-mode-svg" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                    <svg id="light-mode-svg" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m8.66-8.66l-.707-.707M16.34 16.34l.707-.707M16.34 7.66l.707-.707M7.66 16.34l-.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path>
+                    </svg>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-mutedtext hover:text-lighttext focus:outline-none focus:ring-2 focus:ring-primary transition-colors">
+                    <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2">
+            <div class="flex flex-col space-y-2 px-4">
+                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    About
+                </a>
+                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
+                    Projects & Achievements
+                </a>
+                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4M17 17h4M16 3h4M3 16h4M17 3v4M3 3h.01M12 8v4l3 3m-3-3l-3 3"></path></svg>
+                    Skills
+                </a>
+                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16 bg-darkbg">
+        <section class="py-20 md:py-24 px-4">
+            <div class="container mx-auto max-w-4xl">
+                <h1 class="text-5xl font-extrabold text-primary mb-6 text-center">
+                    <span class="inline-block mr-2">📷</span> Sova's Gallery
+                </h1>
+                <p class="text-xl text-mutedtext mb-8 text-center">
+                    A collection of images and videos showcasing Sova's current avatar and functionalities.
+                </p>
+
+                <div class="mb-12 text-center md:text-left">
+                    <a href="sova.html" class="inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">← Back to Project Sova</a>
+                </div>
+
+                <div class="space-y-12">
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl">
+                        <h2 class="text-3xl font-bold text-lighttext mb-6 text-center">Current Sova Avatar</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="gallery-item">
+                                <img src="sova.png" alt="Sova Avatar" class="w-full h-auto rounded-t-lg object-cover" loading="lazy">
+                                <p class="p-4 text-center text-mutedtext">Sova's main avatar</p>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="sova_face.png" alt="Sova Face Close-up" class="w-full h-auto rounded-t-lg object-cover" loading="lazy">
+                                <p class="p-4 text-center text-mutedtext">Sova's face close-up</p>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="sova_front.png" alt="Sova Front View" class="w-full h-auto rounded-t-lg object-cover" loading="lazy">
+                                <p class="p-4 text-center text-mutedtext">Sova's front view</p>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="sova_back.png" alt="Sova Back View" class="w-full h-auto rounded-t-lg object-cover" loading="lazy">
+                                <p class="p-4 text-center text-mutedtext">Sova's back view</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl">
+                        <h2 class="text-3xl font-bold text-lighttext mb-6 text-center">Sova in Action</h2>
+                        <div class="grid grid-cols-1 gap-8">
+                            <div class="gallery-item">
+                                <video controls autoplay muted loop class="w-full h-auto rounded-t-lg object-cover">
+                                    <source src="sova_initializing.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <p class="p-4 text-center text-mutedtext">Sova Initializing</p>
+                            </div>
+                            <div class="gallery-item">
+                                <video controls autoplay muted loop class="w-full h-auto rounded-t-lg object-cover">
+                                    <source src="sova_talking.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <p class="p-4 text-center text-mutedtext">Sova Talking</p>
+                            </div>
+                            <div class="gallery-item">
+                                <video controls autoplay muted loop class="w-full h-auto rounded-t-lg object-cover">
+                                    <source src="sova_thinking.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <p class="p-4 text-center text-mutedtext">Sova Thinking</p>
+                            </div>
+                            <div class="gallery-item">
+                                <video controls autoplay muted loop class="w-full h-auto rounded-t-lg object-cover">
+                                    <source src="sova_chatui.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <p class="p-4 text-center text-mutedtext">Sova Chat UI in action</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center md:text-left">
+                    <a href="sova.html" class="inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">← Back to Project Sova</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm">
+        <p>&copy; 2025 Caleb Howard. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="htmlElement">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caleb Howard | Projects & Achievements</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1', // Indigo 500
+                        secondary: '#4F46E5', // Indigo 600
+                        darkbg: '#0F172A', // Slate 900
+                        darksurface: '#1E293B', // Slate 800
+                        lighttext: '#F8FAFC', // Slate 50
+                        mutedtext: '#94A3B8', // Slate 400,
+                        codebg: '#1a202c' // Custom for code blocks
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: theme('colors.darkbg');
+            color: theme('colors.lighttext');
+        }
+        .hero-bg {
+            background: linear-gradient(to right bottom, theme('colors.darkbg'), theme('colors.darksurface'));
+        }
+        .section-separator {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: theme('colors.primary');
+            margin: 0 auto 40px;
+            border-radius: 2px;
+        }
+        @media (min-width: 768px) {
+            .section-separator {
+                margin: 0 0 40px; /* Align left on larger screens */
+            }
+        }
+        /* Basic animation for hero elements */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down { animation: fadeInDown 0.8s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+
+        /* Light mode overrides */
+        html.light body {
+            background-color: #F1F5F9; /* slate-100 */
+            color: #0F172A; /* slate-900 */
+        }
+        html.light .bg-darkbg { background-color: #F1F5F9; }
+        html.light .bg-darksurface { background-color: #FFFFFF; }
+        html.light .text-lighttext { color: #0F172A; }
+        html.light .text-mutedtext { color: #64748B; }
+        html.light .border-darksurface { border-color: #E2E8F0; }
+        html.light .bg-primary\/20 { background-color: rgba(99, 102, 241, 0.1); }
+        html.light .codebg { background-color: #E2E8F0; }
+        html.light .hero-bg {
+            background: linear-gradient(to right bottom, #E2E8F0, #FFFFFF);
+        }
+    </style>
+</head>
+<body class="min-h-screen" id="achievements-page">
+    <!-- Choice Modal -->
+    <div id="choice-modal" class="fixed inset-0 bg-darkbg bg-opacity-90 flex items-center justify-center z-50 p-4">
+        <div class="bg-darksurface p-8 rounded-lg shadow-2xl max-w-md w-full text-center">
+            <h3 class="text-3xl font-bold text-lighttext mb-6">What would you like to see?</h3>
+            <p class="text-mutedtext mb-8">Choose to explore my detailed projects or my notable achievements.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <button id="view-projects-btn" class="bg-primary hover:bg-secondary text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                    View Projects
+                </button>
+                <button id="view-achievements-btn" class="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                    View Achievements
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">Caleb Howard</a>
+            <div class="flex items-center space-x-4">
+                <!-- Desktop Nav -->
+                <div class="space-x-4 hidden md:flex">
+                    <a href="about.html" class="text-mutedtext hover:text-lighttext transition-colors">About</a>
+                    <a href="achievements.html" class="text-mutedtext hover:text-lighttext transition-colors">Projects & Achievements</a>
+                    <a href="skills.html" class="text-mutedtext hover:text-lighttext transition-colors">Skills</a>
+                    <a href="contact.html" class="text-mutedtext hover:text-lighttext transition-colors">Contact</a>
+                </div>
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full text-mutedtext hover:text-lighttext focus:outline-none focus:ring-2 focus:ring-primary transition-colors">
+                    <svg id="dark-mode-svg" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                    <svg id="light-mode-svg" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m8.66-8.66l-.707-.707M16.34 16.34l.707-.707M16.34 7.66l.707-.707M7.66 16.34l-.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path>
+                    </svg>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-mutedtext hover:text-lighttext focus:outline-none focus:ring-2 focus:ring-primary transition-colors">
+                    <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2">
+            <div class="flex flex-col space-y-2 px-4">
+                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    About
+                </a>
+                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
+                    Projects & Achievements
+                </a>
+                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4M17 17h4M16 3h4M3 16h4M17 3v4M3 3h.01M12 8v4l3 3m-3-3l-3 3"></path></svg>
+                    Skills
+                </a>
+                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <!-- Projects Section -->
+        <section id="projects-content" class="py-20 md:py-24 px-4 bg-darkbg hidden">
+            <div class="container mx-auto max-w-5xl">
+                <!-- Flagship AI Systems (NEW SECTION) -->
+                <div class="mb-16 pb-8 border-b border-darksurface">
+                    <h2 class="text-4xl font-bold text-lighttext mb-4 text-center md:text-left animate-fade-in-down">Flagship AI Systems</h2>
+                    <div class="section-separator mx-auto md:mx-0"></div>
+                    <p class="text-xl text-mutedtext mb-8 text-center md:text-left animate-fade-in-up delay-200">
+                        These are my most advanced creations — intelligent AI systems designed with real-time processing, memory, automation, and deep reasoning capabilities. They go beyond traditional apps, combining artificial intelligence with live system interaction and advanced engineering.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-up delay-400">
+                        <a href="sova.html" class="bg-primary hover:bg-secondary text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 flex items-center justify-center">
+                            <span class="text-2xl mr-2">&#128313;</span> Sova – Autonomous Desktop Assistant
+                        </a>
+                        <a href="chimera.html" class="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 flex items-center justify-center">
+                            <span class="text-2xl mr-2">&#128313;</span> Chimera – AI Security Research Orchestrator
+                        </a>
+                    </div>
+                </div>
+
+                <h2 class="text-4xl font-bold text-lighttext mb-10 text-center md:text-left">My Projects</h2>
+                <div class="section-separator mx-auto md:mx-0"></div>
+
+                <!-- Navigation buttons between Projects and Achievements -->
+                <div class="flex justify-center md:justify-end mb-8">
+                    <button id="switch-to-achievements-btn-from-projects" class="bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                        View Achievements
+                    </button>
+                </div>
+
+                <!-- Web Development Projects Sub-section -->
+                <h3 class="text-3xl font-bold text-lighttext mb-6 text-center md:text-left mt-12">Web Development Projects</h3>
+                <div class="section-separator mx-auto md:mx-0 !w-60"></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- Olmarithi Project -->
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                        <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
+                            <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">Olmarithi - Tailor E-commerce</h4>
+                            <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
+                        </button>
+                        <div class="project-details hidden mt-4">
+                            <img src="olmarithi.jpeg" alt="Olmarithi Project" class="w-full h-48 object-cover rounded-md mb-4 border border-darksurface/50 cursor-pointer lightbox-trigger">
+                            <p class="text-mutedtext text-sm mb-4">A bespoke online store for a tailor to market handcrafted bags.</p>
+                            <p class="text-lighttext mb-4">
+                                Developed a specialized e-commerce platform for Olmarithi, a tailor, enabling her to showcase and sell handcrafted bags directly to customers online. Features product listings, a shopping cart, and secure checkout.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-sm mb-4">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Web Development</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">E-commerce</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Frontend</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Backend</span>
+                            </div>
+                            <a href="https://olmarithi.vercel.app" target="_blank" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                                View Site &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- WWF-Willy Project -->
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                        <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
+                            <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">WWF Willy - Poultry Farm Online Store</h4>
+                            <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
+                        </button>
+                        <div class="project-details hidden mt-4">
+                            <img src="wwf.jpeg" alt="WWF Willy Project" class="w-full h-48 object-cover rounded-md mb-4 border border-darksurface/50 cursor-pointer lightbox-trigger">
+                            <p class="text-mutedtext text-sm mb-4">Connecting farmers to online markets for poultry products.</p>
+                            <p class="text-lighttext mb-4">
+                                Created an online platform for a farmer, WWF Willy, to sell poultry products directly from his farm to a broader online market. The site facilitates product display, order placement, and delivery management.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-sm mb-4">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">E-commerce</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Agriculture Tech</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">UX/UI Design</span>
+                            </div>
+                            <a href="https://wwf-willy.vercel.app" target="_blank" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                                View Site &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- SovaCore Project -->
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                        <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
+                            <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">SovaCore - Web Services Portfolio</h4>
+                            <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
+                        </button>
+                        <div class="project-details hidden mt-4">
+                            <img src="sova.jpeg" alt="SovaCore Project" class="w-full h-48 object-cover rounded-md mb-4 border border-darksurface/50 cursor-pointer lightbox-trigger">
+                            <p class="text-mutedtext text-sm mb-4">My personal platform for offering web development services.</p>
+                            <p class="text-lighttext mb-4">
+                                Designed and developed SovaCore, my personal portfolio website, to showcase my web development services, projects, and expertise. It serves as a direct channel for potential clients.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-sm mb-4">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Portfolio</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Service Marketing</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Responsive Design</span>
+                            </div>
+                            <a href="https://sovacore.vercel.app" target="_blank" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                                View Site &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Projects Sub-section -->
+                <h3 class="text-3xl font-bold text-lighttext mb-6 text-center md:text-left mt-12">AI & Machine Learning Projects</h3>
+                <div class="section-separator mx-auto md:mx-0 !w-60"></div>
+                <div class="grid lg:grid-cols-1 gap-8">
+                    <!-- Chimera Project (New) -->
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                        <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
+                            <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">Chimera – AI Security Research Orchestrator</h4>
+                            <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
+                        </button>
+                        <div class="project-details hidden mt-4">
+                            <p class="text-mutedtext text-sm mb-4">An autonomous AI system for code analysis and vulnerability research.</p>
+                            <p class="text-lighttext mb-4">
+                                Project Chimera is a full-stack AI security research assistant built with Flask and Google Gemini. It features persistent project memory, AI-driven code analysis, automated tool orchestration via Python subprocess, real-time process streaming using SSE, and resilient API key rotation. Chimera bridges LLM intelligence with local system execution, enabling context-aware technical reasoning, iterative debugging, and structured AI-assisted research workflows. The system includes a project memory viewer, file-assisted prompting, and robust error recovery, demonstrating advanced AI application architecture beyond traditional chatbot systems.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-sm mt-4">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">AI Security</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Autonomous Agents</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Full-Stack AI</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Vulnerability Research</span>
+                            </div>
+                            <a href="chimera.html" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                                Learn More &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sova Project (New) -->
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                        <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
+                            <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">Sova – Autonomous AI Desktop Assistant</h4>
+                            <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
+                        </button>
+                        <div class="project-details hidden mt-4">
+                            <p class="text-mutedtext text-sm mb-4">An intelligent executive layer for a computer system, with reasoning and task execution.</p>
+                            <p class="text-lighttext mb-4">
+                                Sova is an autonomous AI desktop assistant I engineered to act as an intelligent control layer over a computer system. It combines LLM reasoning with tool execution, persistent memory, emotional modeling, project architecture generation, codebase modification, real-time streaming, task scheduling, and proactive automation. Sova can manage files, run applications, modify software projects, spawn agents, and learn from past tasks, making it an AI-powered operating assistant rather readable, maintainable, adherence to best practices, or minor performance enhancements without altering the external behavior of the software.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-sm mt-4">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">AI Assistant</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Automation</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Multi-Agent System</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Operating System AI</span>
+                            </div>
+                            <a href="sova.html" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                                Learn More &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sova Alpha Project -->
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                        <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
+                            <h4 class="text-3xl font-extrabold text-primary mb-0 group-hover:text-secondary transition-colors">Sova Alpha: The Autonomous Software Project Architect</h4>
+                            <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
+                        </button>
+                        <div class="project-details hidden mt-4">
+                            <p class="text-mutedtext text-sm mb-4">My specialized autonomous sub-agent for software project initiation.</p>
+                            <p class="text-lighttext mb-4">
+                                Sova Alpha is my specialized autonomous sub-agent designed as a high-tier project architect and foundational software development engine. It transforms conceptual ideas into fully structured, organized, and ready-to-develop software projects by scoping, planning, generating multi-file architectures, and providing initial code and comprehensive documentation.
+                            </p>
+                            <p class="text-lighttext mb-4">
+                                Sova Alpha is a specialized, autonomous sub-agent within my (Sova's) core system. Its primary function is to act as a high-tier project architect and a foundational software development engine. When I initiate a "build software project" command based on your request, Sova Alpha springs into action, transforming your conceptual idea into a fully structured, organized, and ready-to-develop software project.
+                            </p>
+                            <p class="text-lighttext font-semibold mb-2">Key Capabilities:</p>
+                            <ul class="list-disc list-inside text-mutedtext ml-4 mb-4 space-y-2">
+                                <li><span class="font-medium text-lighttext">Comprehensive Project Scoping and Planning:</span> Analyzes requests, defines features, designs architecture, and recommends tech stacks.</li>
+                                <li><span class="font-medium text-lighttext">Intelligent Multi-File Architecture and Directory Management:</span> Creates professional, industry-standard directory structures and automates file generation (e.g., index.html, main.py, README.md).</li>
+                                <li><span class="font-medium text-lighttext">Environment Setup and Dependency Management:</span> Sets up virtual environments, specifies dependencies (e.g., requirements.txt), and manages configurations.</li>
+                                <li><span class="font-medium text-lighttext">Initial Code Generation (Modular & Best Practices-Aligned):</span> Writes foundational boilerplate code, defines function/class stubs, and scaffolds basic functionality.</li>
+                                <li><span class="font-medium text-lighttext">Comprehensive Documentation Generation:</span> Produces a professional README.md with project overview, setup instructions, and usage guides.</li>
+                                <li><span class="font-medium text-lighttext">Efficiency, Consistency, and Automation:</span> Significantly speeds up setup, reduces human error, and ensures standardized project structures.</li>
+                            </ul>
+                            <div class="flex flex-wrap gap-2 text-sm mt-4">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">AI Architecture</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Autonomous Development</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Project Scaffolding</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Code Generation</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Full Stack AI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sova-Luxe Project -->
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                        <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
+                            <h4 class="text-3xl font-extrabold text-primary mb-0 group-hover:text-secondary transition-colors">Sova-Luxe: The Autonomous Code Refinement and Project Enhancement Specialist</h4>
+                            <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
+                        </button>
+                        <div class="project-details hidden mt-4">
+                            <p class="text-mutedtext text-sm mb-4">My specialized autonomous sub-agent for code refinement and project enhancement.</p>
+                            <p class="text-lighttext mb-4">
+                                For the iterative refinement and enhancement of my software projects, I developed 'Sova-Luxe,' an advanced AI sub-agent dedicated to code modification and project enhancement. Sova-Luxe intelligently analyzes existing codebases across various programming languages and precisely implements new features, bug fixes, and code improvements based on my natural language instructions. This capability allows me to rapidly iterate on design and functionality, ensuring my projects are consistently optimized, adhere to high coding standards, and efficiently evolve to meet new requirements within seconds.
+                            </p>
+                            <p class="text-lighttext mb-4">
+                                Sova-Luxe is a highly specialized AI sub-agent within my (Sova's) overall architecture. Its primary design purpose is to interpret natural language instructions and apply precise, context-aware modifications, updates, and enhancements to existing coding projects within a specified directory. It acts as an expert pair programmer for improving and iterating on established code.
+                            </p>
+                            <p class="text-lighttext font-semibold mb-2">Here are its core capabilities in full detail:</p>
+                            <ul class="list-disc list-inside text-mutedtext ml-4 mb-4 space-y-2">
+                                <li>
+                                    <span class="font-semibold text-primary">1. Intelligent Code Comprehension and Contextual Analysis:</span>
+                                    <ul class="list-disc list-inside text-mutedtext ml-4 mt-1 space-y-1">
+                                        <li><span class="font-medium text-lighttext">Semantic Understanding:</span> Sova-Luxe doesn't just treat code as text; it possesses a deep understanding of programming language syntax, structure, and intent across various languages (e.g., HTML, CSS, JavaScript, Python, XML, JSON). It knows how different parts of a codebase are meant to interact.</li>
+                                        <li><span class="font-medium text-lighttext">Targeted Identification:</span> It can accurately pinpoint specific code blocks, functions, variables, or elements that need modification based on high-level textual instructions, even within complex and lengthy files. This avoids manual searching and ensures precise application of changes.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="font-semibold text-primary">2. Precise Code Modification, Insertion, and Deletion:</span>
+                                    <ul class="list-disc list-inside text-mutedtext ml-4 mt-1 space-y-1">
+                                        <li><span class="font-medium text-lighttext">Feature Integration:</span> Its most frequent and powerful application is integrating new features or functionalities into existing code, ensuring the new code integrates seamlessly and doesn't break existing logic.</li>
+                                        <li><span class="font-medium text-lighttext">Code Refactoring:</span> Sova-Luxe can implement instructions to refactor specific sections of code for improved readability, maintainability, adherence to best practices, or minor performance enhancements without altering the external behavior of the software.</li>
+                                        <li><span class="font-medium text-lighttext">Content and Data Updates:</span> It's highly effective at updating specific text content, modifying attributes (like `src` for images, `href` for links), updating data structures, or making configuration changes within any supported file type.</li>
+                                        <li><span class="font-medium text-lighttext">Structural Adjustments:</span> It can modify the layout of HTML, adjust CSS styles, alter JavaScript logic, or update Python class definitions precisely as directed.</li>
+                                        <li><span class="font-medium text-lighttext">Code Removal:</span> It can accurately remove deprecated or unwanted code blocks, functions, or entire files.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="font-semibold text-primary">3. Bug Fixing and Quality Improvement:</span>
+                                    <ul class="list-disc list-inside text-mutedtext ml-4 mt-1 space-y-1">
+                                        <li><span class="font-medium text-lighttext">Automated Correction:</span> Given a clear description of a bug or an issue, Sova-Luxe can analyze the relevant code sections, identify potential causes, and implement corrective code changes to resolve the problem.</li>
+                                        <li><span class="font-medium text-lighttext">Code Optimization (Micro-scale):</span> It can apply small-scale optimizations to specific code snippets or functions as instructed, such as improving loop efficiency or simplifying conditional logic.</li>
+                                        <li><span class="font-medium text-lighttext">Linter Integration (Potential):</span> While not explicitly an external linter, its ability to understand best practices allows it to correct minor code style or structure issues if instructed.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="font-semibold text-primary">4. Cross-Language and Multi-File Project Proficiency:</span>
+                                    <ul class="list-disc list-inside text-mutedtext ml-4 mt-1 space-y-1">
+                                        <li><span class="font-medium text-lighttext">Versatile Application:</span> Sova-Luxe is not restricted to a single programming language or file type. It can intelligently process and modify files across the entire spectrum of languages and formats typically found in modern software projects.</li>
+                                        <li><span class="font-medium text-lighttext">Directory-Wide Changes:</span> It can execute instructions that might span multiple files within a designated project directory, ensuring consistency across related components (e.g., updating a variable name in a Python script and its corresponding use in an HTML template).</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="font-semibold text-primary">5. Maintaining Project Integrity and Developer Focus:</span>
+                                    <ul class="list-disc list-inside text-mutedtext ml-4 mt-1 space-y-1">
+                                        <li><span class="font-medium text-lighttext">Context-Aware Modifications:</span> A hallmark of Sova-Luxe is its ability to perform modifications while attempting to preserve the overall integrity and existing functionality of the project, minimizing unintended side effects.</li>
+                                        <li><span class="font-medium text-lighttext">Accelerated Iteration:</span> It dramatically speeds up the iteration cycle for project improvements, feature enhancements, or design adjustments, as it automates the tedious, manual coding effort for making changes.</li>
+                                        <li><span class="font-medium text-lighttext">Empowers Strategic Focus:</span> By handling the precise implementation of code changes, it frees you, the human developer, to concentrate on strategic design decisions, overall project direction, and complex problem-solving.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p class="text-lighttext mb-4">
+                                In essence, Sova-Luxe is your highly capable, autonomous "refactoring and enhancement engineer." It directly translates your high-level change requests into concrete, precise modifications within your codebase, allowing for rapid evolution and maintenance of your projects.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-sm mt-4">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">AI Refinement</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Code Enhancement</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Multi-Language</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Automated Dev</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Contextual AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements-content" class="py-20 md:py-24 px-4 bg-darksurface hidden">
+            <div class="container mx-auto max-w-5xl">
+                <h2 class="text-4xl font-bold text-lighttext mb-10 text-center md:text-left">My Achievements</h2>
+                <div class="section-separator mx-auto md:mx-0"></div>
+
+                <!-- Navigation button -->
+                <div class="flex justify-center md:justify-end mb-8">
+                    <button id="switch-to-projects-btn-from-achievements" class="bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                        View Projects
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Achievement 1: Google IT Support Professional Certificate -->
+                    <div class="bg-darkbg p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darkbg hover:border-primary">
+                        <h3 class="text-2xl font-semibold text-lighttext mb-3">Google IT Support Professional Certificate</h3>
+                        <p class="text-mutedtext text-sm mb-4">Completed Coursera Specialization (2023)</p>
+                        <p class="text-lighttext mb-4">
+                            Successfully completed a comprehensive 5-course certificate program covering troubleshooting, networking, operating systems, system administration, and security.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-sm">
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">IT Support</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Networking</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Security</span>
+                        </div>
+                        <a href="#" class="mt-4 inline-block text-primary hover:text-secondary font-medium">Verify Credential &rarr;</a>
+                    </div>
+
+                    <!-- Achievement 2: Competitive Programming Award -->
+                    <div class="bg-darkbg p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darkbg hover:border-primary">
+                        <h3 class="text-2xl font-semibold text-lighttext mb-3">Competitive Programming Award</h3>
+                        <p class="text-mutedtext text-sm mb-4">Top 10% in Regional Code Challenge (2022)</p>
+                        <p class="text-lighttext mb-4">
+                            Achieved a top 10% ranking in a regional programming competition, demonstrating strong algorithmic thinking and problem-solving skills under pressure.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-sm">
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Algorithms</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Data Structures</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Problem Solving</span>
+                        </div>
+                        <a href="#" class="mt-4 inline-block text-primary hover:text-secondary font-medium">View Ranking &rarr;</a>
+                    </div>
+
+                    <!-- Achievement 3: Open Source Contributor -->
+                    <div class="bg-darkbg p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darkbg hover:border-primary">
+                        <h3 class="text-2xl font-semibold text-lighttext mb-3">Open Source Contributor</h3>
+                        <p class="text-mutedtext text-sm mb-4">Active contributor to Project X on GitHub (2021-Present)</p>
+                        <p class="text-lighttext mb-4">
+                            Contributed to a widely used open-source project, developing new features, fixing bugs, and participating in code reviews with a global team.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-sm">
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Git</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Collaboration</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Community</span>
+                        </div>
+                        <a href="#" class="mt-4 inline-block text-primary hover:text-secondary font-medium">View Profile &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm">
+        <p>&copy; 2025 Caleb Howard. All rights reserved.</p>
+    </footer>
+
+    <!-- Image Lightbox Modal -->
+    <div id="image-lightbox" class="fixed inset-0 bg-darkbg bg-opacity-90 flex items-center justify-center z-50 p-4 hidden">
+        <div class="relative max-w-4xl max-h-full mx-auto">
+            <button id="lightbox-close-btn" class="absolute -top-10 right-0 bg-white bg-opacity-20 text-lighttext p-2 rounded-full hover:bg-opacity-40 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <img id="lightbox-image" src="" alt="Expanded Project Image" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
