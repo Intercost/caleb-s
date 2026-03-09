@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import ProjectCard from '@/components/ProjectCard'
 
 export const metadata: Metadata = {
@@ -219,8 +217,6 @@ export default function Achievements() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

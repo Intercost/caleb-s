@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Caleb Howard | Skills',
@@ -29,9 +27,7 @@ const skills: Skill[] = [
 export default function Skills() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
-      
-      <main className="flex-grow pt-16">
+      <main className="flex-grow">
         {/* Skills Section */}
         <section id="skills" className="py-20 md:py-24 px-4 bg-darksurface">
           <div className="container mx-auto max-w-5xl">
@@ -100,8 +96,6 @@ export default function Skills() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

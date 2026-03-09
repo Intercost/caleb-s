@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
-import { ThemeProvider } from 'next-themes'
 import './globals.css'
+import ThemeProviderWrapper from '@/components/ThemeProviderWrapper'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -32,10 +34,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetBrainsMono.variable} min-h-screen`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
-        </ThemeProvider>
+      <body className={`${inter.variable} ${jetBrainsMono.variable} min-h-screen bg-darkbg text-lighttext`}>
+        <ThemeProviderWrapper>
+          <Navigation />
+          <main className="pt-20 pb-16">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProviderWrapper>
       </body>
     </html>
   )

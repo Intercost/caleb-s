@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Sova – Autonomous AI Desktop Assistant | Caleb Howard',
@@ -11,9 +9,7 @@ export const metadata: Metadata = {
 export default function Sova() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
-      
-      <main className="flex-grow pt-16">
+      <main className="flex-grow">
         <section className="py-20 md:py-24 px-4 bg-darksurface">
           <div className="container mx-auto max-w-4xl">
             <Link href="/achievements" className="text-primary hover:text-secondary mb-6 flex items-center gap-2">
@@ -68,8 +64,6 @@ export default function Sova() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

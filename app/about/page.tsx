@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Caleb Howard | About Me',
@@ -11,9 +9,7 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
-      
-      <main className="flex-grow pt-16">
+      <main className="flex-grow">
         {/* About Section */}
         <section id="about" className="py-20 md:py-24 px-4 bg-darksurface min-h-[calc(100vh-64px-108px)] flex items-center">
           <div className="container mx-auto max-w-5xl">
@@ -49,8 +45,6 @@ export default function About() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

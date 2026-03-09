@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Caleb Howard | Education',
@@ -11,9 +9,7 @@ export const metadata: Metadata = {
 export default function Education() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
-      
-      <main className="flex-grow pt-16">
+      <main className="flex-grow">
         <section className="py-20 md:py-24 px-4 bg-darksurface">
           <div className="container mx-auto max-w-5xl">
             <h2 className="text-4xl font-bold text-lighttext mb-10 text-center md:text-left">
@@ -126,8 +122,6 @@ export default function Education() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

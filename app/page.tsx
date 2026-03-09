@@ -1,14 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
-      
-      <main className="flex-grow pt-16">
+      <main className="flex-grow">
         {/* Hero Section */}
         <section id="hero" className="hero-bg flex items-center justify-center min-h-screen text-center px-4 py-16">
           <div className="max-w-4xl mx-auto">
@@ -45,8 +41,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }
