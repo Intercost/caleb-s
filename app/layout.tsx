@@ -33,8 +33,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetBrainsMono.variable} min-h-screen bg-darkbg text-lighttext`}>
+    <html lang="en" suppressHydrationWarning style={{ colorScheme: 'dark' }}>
+      <head />
+      <body className={`${inter.variable} ${jetBrainsMono.variable} min-h-screen bg-darkbg text-lighttext dark`}>
         <ThemeProviderWrapper>
           <Navigation />
           <main className="pt-20 pb-16">
