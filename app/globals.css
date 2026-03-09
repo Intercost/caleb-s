@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-jet-brains-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0F172A;
+}
+
+html.light {
+  background-color: #F1F5F9 !important;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: #0F172A;
+  color: #F8FAFC;
+}
+
+html.light body {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+.hero-bg {
+  background: linear-gradient(to right bottom, #0F172A, #1E293B);
+}
+
+html.light .hero-bg {
+  background: linear-gradient(to right bottom, #E2E8F0, #FFFFFF) !important;
+}
+
+.section-separator {
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #6366F1;
+  margin: 0 auto 40px;
+  border-radius: 2px;
+}
+
+@media (min-width: 768px) {
+  .section-separator {
+    margin: 0 0 40px;
+  }
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+/* Light mode color overrides */
+html.light .bg-darkbg {
+  background-color: #F1F5F9 !important;
+}
+
+html.light .bg-darksurface {
+  background-color: #FFFFFF !important;
+}
+
+html.light .text-lighttext {
+  color: #0F172A !important;
+}
+
+html.light .text-mutedtext {
+  color: #64748B !important;
+}
+
+html.light .border-darksurface {
+  border-color: #E2E8F0 !important;
+}
+
+html.light .bg-primary\/20 {
+  background-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+html.light .codebg {
+  background-color: #E2E8F0 !important;
+}
+
+/* Lightbox and modal styles */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.lightbox-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
