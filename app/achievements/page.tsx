@@ -60,9 +60,7 @@ const aiProjects = [
 export default function Achievements() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
-      
-      <main className="flex-grow pt-16">
+      <main className="flex-grow">
         {/* Achievements Section */}
         <section id="achievements" className="py-20 md:py-24 px-4 bg-darkbg">
           <div className="container mx-auto max-w-5xl">
