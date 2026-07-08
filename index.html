@@ -13,42 +13,49 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#6366F1', // Indigo 500
-                        secondary: '#4F46E5', // Indigo 600
-                        darkbg: '#0F172A', // Slate 900
-                        darksurface: '#1E293B', // Slate 800
-                        lighttext: '#F8FAFC', // Slate 50
-                        mutedtext: '#94A3B8', // Slate 400,
+                        primary: '#06b6d4', // accent2 (cyan)
+                        secondary: '#3b82f6', // accent (blue)
+                        darkbg: '#0b0f19', // bg
+                        darksurface: '#151d2e', // card
+                        darksurface2: '#111827', // bg2
+                        darksurface3: '#1a2235', // bg3
+                        border: '#1e2d45', // border
+                        accent3: '#10b981', // green
+                        accent4: '#f59e0b', // amber
+                        accent5: '#ef4444', // red
+                        accent6: '#8b5cf6', // purple
+                        lighttext: '#e8edf5', // text
+                        mutedtext: '#94a3b8', // text2
+                        mutedtext2: '#64748b', // text3
                         codebg: '#1a202c' // Custom for code blocks
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['DM Mono', 'monospace'],
                     },
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
-        /* 🚀 FIX: Use hex codes directly instead of theme() */
         html {
-            background-color: #0F172A; /* darkbg */
+            background-color: #0b0f19; /* darkbg */
         }
         html.light {
             background-color: #F1F5F9 !important; /* light mode fallback */
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0F172A; /* darkbg */
-            color: #F8FAFC; /* lighttext */
+            font-family: 'DM Sans', sans-serif;
+            background-color: #0b0f19; /* darkbg */
+            color: #e8edf5; /* lighttext */
         }
 
         .hero-bg {
-            /* 🚀 FIX: Use hex codes for the gradient */
-            background: linear-gradient(to right bottom, #0F172A, #1E293B);
+            background: linear-gradient(to right bottom, #0b0f19, #111827);
         }
 
         .section-separator {
@@ -56,34 +63,180 @@
             display: block;
             width: 80px;
             height: 4px;
-            background-color: #6366F1; /* primary */
+            background-color: #06b6d4; /* primary (accent2) */
             margin: 0 auto 40px;
             border-radius: 2px;
         }
 
-        /* ... rest of your animation code ... */
-
         /* Light mode overrides */
         html.light body {
-            background-color: #F1F5F9 !important; 
-            color: #0F172A !important; 
+            background-color: #F1F5F9 !important;
+            color: #0b0f19 !important;
         }
-        
-        /* Ensure the hero section specifically flips in light mode */
+
         html.light .hero-bg {
             background: linear-gradient(to right bottom, #E2E8F0, #FFFFFF) !important;
         }
 
         html.light h1.text-lighttext {
-            color: #6366F1 !important; /* Primary color for light mode */
+            color: #06b6d4 !important; /* Primary color for light mode */
+        }
+
+        /* ================= LOADER (3D cube) ================= */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: #0b0f19;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        html.light #loader { background: #F1F5F9 !important; }
+        #loader.loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        body.is-loading { overflow: hidden; }
+
+        .cube-scene {
+            width: 70px;
+            height: 70px;
+            perspective: 500px;
+        }
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCube 2.4s infinite linear;
+        }
+        .cube-face {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 1px solid #06b6d4;
+            background: rgba(6, 182, 212, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: #06b6d4;
+        }
+        .cube-face.front  { transform: translateZ(35px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(35px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(35px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(35px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(35px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(35px); }
+
+        @keyframes spinCube {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to   { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        #loader p {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cube { animation: none; }
+        }
+
+        /* ================= Hero entrance animations ================= */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down { animation: fadeInDown 0.8s ease both; }
+        .animate-fade-in-up   { animation: fadeInUp 0.8s ease both; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in-down, .animate-fade-in-up { animation: none; }
+        }
+
+        /* ================= Scroll reveal ================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        /* ================= Cards ================= */
+        .pillar-card {
+            background: #151d2e; /* darksurface */
+            border: 1px solid #1e2d45; /* border */
+            border-radius: 16px;
+            padding: 32px 26px;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            border-color: #06b6d4;
+            box-shadow: 0 20px 40px -20px rgba(6, 182, 212, 0.35);
+        }
+        html.light .pillar-card {
+            background: #ffffff !important;
+            border-color: #dbe4f0 !important;
+        }
+        html.light .pillar-card:hover {
+            box-shadow: 0 20px 40px -20px rgba(6, 182, 212, 0.25) !important;
+        }
+        .pillar-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen is-loading">
+
+    <!-- Loader -->
+    <div id="loader" aria-hidden="true">
+        <div class="cube-scene">
+            <div class="cube">
+                <div class="cube-face front">CH</div>
+                <div class="cube-face back">CH</div>
+                <div class="cube-face right">CH</div>
+                <div class="cube-face left">CH</div>
+                <div class="cube-face top">CH</div>
+                <div class="cube-face bottom">CH</div>
+            </div>
+        </div>
+        <p>Loading portfolio</p>
+    </div>
+
     <!-- Navigation -->
-    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10">
+    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10 border-b border-border">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-primary">Caleb Howard</a>
+            <a href="index.html" class="text-2xl font-bold text-primary font-serif">Caleb Howard</a>
             <div class="flex items-center space-x-4">
                 <!-- Desktop Nav -->
                 <div class="space-x-4 hidden md:flex">
@@ -114,21 +267,21 @@
         </div>
 
         <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2">
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2 border-b border-border">
             <div class="flex flex-col space-y-2 px-4">
-                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     About
                 </a>
-                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
                     Achievements
                 </a>
-                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4M17 17h4M16 3h4M3 16h4M17 3v4M3 3h.01M12 8v4l3 3m-3-3l-3 3"></path></svg>
                     Skills
                 </a>
-                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     Contact
                 </a>
@@ -140,23 +293,133 @@
         <!-- Hero Section -->
         <section id="hero" class="hero-bg flex items-center justify-center min-h-screen text-center px-4 py-16">
             <div class="max-w-4xl mx-auto">
-                <img src="passport.jpeg" alt="Caleb Howard" class="w-48 h-48 object-cover mx-auto mb-8 shadow-xl border-4 border-primary animate-fade-in-down">
+                <img src="passport.jpeg" alt="Caleb Howard" class="w-48 h-48 object-cover rounded-full mx-auto mb-8 shadow-xl border-4 border-primary animate-fade-in-down">
                 <p class="text-xl md:text-2xl text-primary font-medium mb-4 animate-fade-in-down delay-200">Hello, I'm</p>
-                <h1 class="text-5xl md:text-7xl font-extrabold text-lighttext leading-tight mb-6 animate-fade-in-up">Caleb Howard</h1>
-                <p class="text-2xl md:text-3xl font-light text-mutedtext mb-8 animate-fade-in-up delay-200">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-lighttext leading-tight mb-6 animate-fade-in-up font-serif">Caleb Howard</h1>
+                <p class="text-2xl md:text-3xl font-light text-mutedtext mb-6 animate-fade-in-up delay-200">
                     A driven <span class="text-primary font-medium">Innovator</span>, <span class="text-primary font-medium">Developer</span>, and <span class="text-primary font-medium">Problem Solver</span>,
                     I am passionate about leveraging technology to create impactful solutions using AI-driven engines.
                 </p>
-                <a href="achievements.html" class="inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 animate-fade-in-up delay-400">
+                <p class="text-base md:text-lg text-mutedtext2 max-w-2xl mx-auto mb-10 animate-fade-in-up delay-200">
+                    Based in Nairobi, Kenya, I build full-stack applications and explore how artificial intelligence
+                    can make software smarter and more useful &mdash; from idea, to prototype, to something people
+                    actually use.
+                </p>
+                <a href="achievements.html" class="inline-block bg-gradient-to-r from-secondary to-primary text-lighttext font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 animate-fade-in-up delay-400 hover:opacity-90">
                     View My Achievements
                 </a>
             </div>
         </section>
+
+        <!-- What I Do / Pillars Section -->
+        <section id="pillars" class="px-4 py-24 bg-darksurface2">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold font-serif text-lighttext mb-4 reveal">What I Do</h2>
+                <div class="section-separator reveal"></div>
+                <p class="text-mutedtext max-w-2xl mx-auto mb-14 reveal">
+                    A quick look at where I spend most of my time and energy as a developer.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                    <div class="pillar-card reveal">
+                        <div class="pillar-icon" style="background: rgba(6,182,212,0.12);">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 8l-4 4 4 4"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-lighttext mb-2">Full-Stack Projects</h3>
+                        <p class="text-sm text-mutedtext">Real-world applications built end-to-end with modern frameworks, from database to UI.</p>
+                    </div>
+
+                    <div class="pillar-card reveal">
+                        <div class="pillar-icon" style="background: rgba(139,92,246,0.12);">
+                            <svg class="w-6 h-6 text-accent6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-lighttext mb-2">AI &amp; Innovation</h3>
+                        <p class="text-sm text-mutedtext">Leveraging AI-driven engines to solve complex, real-world problems in creative ways.</p>
+                    </div>
+
+                    <div class="pillar-card reveal">
+                        <div class="pillar-icon" style="background: rgba(16,185,129,0.12);">
+                            <svg class="w-6 h-6 text-accent3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-lighttext mb-2">Technical Skills</h3>
+                        <p class="text-sm text-mutedtext">A growing toolkit of programming languages and frameworks, well beyond the classroom curriculum.</p>
+                    </div>
+
+                    <div class="pillar-card reveal">
+                        <div class="pillar-icon" style="background: rgba(245,158,11,0.12);">
+                            <svg class="w-6 h-6 text-accent4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-lighttext mb-2">Achievements</h3>
+                        <p class="text-sm text-mutedtext">Milestones earned during my time at Starehe Boys' Centre &amp; School, on and off the keyboard.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing CTA strip -->
+        <section id="cta-strip" class="px-4 py-20">
+            <div class="max-w-3xl mx-auto text-center reveal">
+                <h2 class="text-2xl md:text-3xl font-bold font-serif text-lighttext mb-4">Curious to see it in action?</h2>
+                <p class="text-mutedtext mb-8">
+                    Explore my full achievements, technical skills, and how to get in touch.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="skills.html" class="inline-block border border-primary text-primary font-semibold py-3 px-7 rounded-full transition-all duration-300 hover:bg-primary hover:text-darkbg">
+                        See My Skills
+                    </a>
+                    <a href="contact.html" class="inline-block bg-gradient-to-r from-secondary to-primary text-lighttext font-bold py-3 px-7 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-90">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm">
-        <p>&copy; 2025 Caleb Howard. All rights reserved.</p>
+    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm border-t border-border">
+        <p>&copy; 2026 Caleb Howard. All rights reserved.</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        // Hide loader once page has loaded (min display time so it doesn't just flash)
+        (function() {
+            var loader = document.getElementById('loader');
+            var body = document.body;
+            var minTime = 900;
+            var start = Date.now();
+
+            function hideLoader() {
+                var elapsed = Date.now() - start;
+                var wait = Math.max(minTime - elapsed, 0);
+                setTimeout(function() {
+                    loader.classList.add('loader-hidden');
+                    body.classList.remove('is-loading');
+                }, wait);
+            }
+
+            if (document.readyState === 'complete') {
+                hideLoader();
+            } else {
+                window.addEventListener('load', hideLoader);
+            }
+        })();
+
+        // Scroll reveal for cards & sections
+        (function() {
+            var items = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                items.forEach(function(el) { el.classList.add('in-view'); });
+                return;
+            }
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            items.forEach(function(el) { observer.observe(el); });
+        })();
+    </script>
 </body>
 </html>

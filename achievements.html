@@ -13,44 +13,54 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#6366F1', // Indigo 500
-                        secondary: '#4F46E5', // Indigo 600
-                        darkbg: '#0F172A', // Slate 900
-                        darksurface: '#1E293B', // Slate 800
-                        lighttext: '#F8FAFC', // Slate 50
-                        mutedtext: '#94A3B8', // Slate 400,
-                        codebg: '#1a202c' // Custom for code blocks
+                        primary: '#06b6d4',
+                        secondary: '#3b82f6',
+                        darkbg: '#0b0f19',
+                        darksurface: '#151d2e',
+                        darksurface2: '#111827',
+                        darksurface3: '#1a2235',
+                        border: '#1e2d45',
+                        accent3: '#10b981',
+                        accent4: '#f59e0b',
+                        accent5: '#ef4444',
+                        accent6: '#8b5cf6',
+                        lighttext: '#e8edf5',
+                        mutedtext: '#94a3b8',
+                        mutedtext2: '#64748b',
+                        codebg: '#1a202c'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['DM Mono', 'monospace'],
                     },
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: theme('colors.darkbg');
-            color: theme('colors.lighttext');
+            font-family: 'DM Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #e8edf5;
         }
         .hero-bg {
-            background: linear-gradient(to right bottom, theme('colors.darkbg'), theme('colors.darksurface'));
+            background: linear-gradient(to right bottom, #0b0f19, #151d2e);
         }
         .section-separator {
             content: '';
             display: block;
             width: 80px;
             height: 4px;
-            background-color: theme('colors.primary');
+            background-color: #06b6d4;
             margin: 0 auto 40px;
             border-radius: 2px;
         }
         @media (min-width: 768px) {
             .section-separator {
-                margin: 0 0 40px; /* Align left on larger screens */
+                margin: 0 0 40px;
             }
         }
         /* Basic animation for hero elements */
@@ -70,16 +80,15 @@
 
         /* Light mode overrides */
         html.light body {
-            background-color: #F1F5F9; /* slate-100 */
-            color: #0F172A; /* slate-900 */
+            background-color: #F1F5F9;
+            color: #0b0f19;
         }
         html.light .bg-darkbg { background-color: #F1F5F9; }
         html.light .bg-darksurface { background-color: #FFFFFF; }
-        html.light .text-lighttext { color: #0F172A; }
-        html.light .text-mutedtext { color: #64748B; }
-        html.light .border-darksurface { border-color: #E2E8F0; }
-        html.light .bg-primary\/20 { background-color: rgba(99, 102, 241, 0.1); }
-        html.light .codebg { background-color: #E2E8F0; }
+        html.light .text-lighttext { color: #0b0f19; }
+        html.light .text-mutedtext { color: #64748b; }
+        html.light .border-border { border-color: #E2E8F0; }
+        html.light .bg-primary\/20 { background-color: rgba(6, 182, 212, 0.2); }
         html.light .hero-bg {
             background: linear-gradient(to right bottom, #E2E8F0, #FFFFFF);
         }
@@ -88,11 +97,11 @@
 <body class="min-h-screen" id="achievements-page">
     <!-- Choice Modal -->
     <div id="choice-modal" class="fixed inset-0 bg-darkbg bg-opacity-90 flex items-center justify-center z-50 p-4">
-        <div class="bg-darksurface p-8 rounded-lg shadow-2xl max-w-md w-full text-center">
-            <h3 class="text-3xl font-bold text-lighttext mb-6">What would you like to see?</h3>
+        <div class="bg-darksurface p-8 rounded-lg shadow-2xl max-w-md w-full text-center border border-border">
+            <h3 class="text-3xl font-bold text-lighttext mb-6 font-serif">What would you like to see?</h3>
             <p class="text-mutedtext mb-8">Choose to explore my detailed projects or my notable achievements.</p>
             <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <button id="view-projects-btn" class="bg-primary hover:bg-secondary text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                <button id="view-projects-btn" class="bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
                     View Projects
                 </button>
                 <button id="view-achievements-btn" class="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
@@ -103,9 +112,9 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10">
+    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10 border-b border-border">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-primary">Caleb Howard</a>
+            <a href="index.html" class="text-2xl font-bold text-primary font-serif">Caleb Howard</a>
             <div class="flex items-center space-x-4">
                 <!-- Desktop Nav -->
                 <div class="space-x-4 hidden md:flex">
@@ -120,7 +129,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                     </svg>
                     <svg id="light-mode-svg" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m8.66-8.66l-.707-.707M16.34 16.34l.707-.707M16.34 7.66l.707-.707M7.66 16.34l-.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m8.66-8.66l-.707-.707M16.34 16.34l.707.707M16.34 7.66l.707-.707M7.66 16.34l-.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path>
                     </svg>
                 </button>
                 <!-- Mobile Menu Button -->
@@ -136,21 +145,21 @@
         </div>
 
         <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2">
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2 border-b border-border">
             <div class="flex flex-col space-y-2 px-4">
-                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0018 0z"></path></svg>
                     About
                 </a>
-                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
+                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012 2h2a2 2 0 012-2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
                     Projects & Achievements
                 </a>
-                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4M17 17h4M16 3h4M3 16h4M17 3v4M3 3h.01M12 8v4l3 3m-3-3l-3 3"></path></svg>
                     Skills
                 </a>
-                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     Contact
                 </a>
@@ -163,44 +172,44 @@
         <section id="projects-content" class="py-20 md:py-24 px-4 bg-darkbg hidden">
             <div class="container mx-auto max-w-5xl">
                 <!-- Flagship AI Systems (NEW SECTION) -->
-                <div class="mb-16 pb-8 border-b border-darksurface">
-                    <h2 class="text-4xl font-bold text-lighttext mb-4 text-center md:text-left animate-fade-in-down">Flagship AI Systems</h2>
+                <div class="mb-16 pb-8 border-b border-border">
+                    <h2 class="text-4xl font-bold text-lighttext mb-4 text-center md:text-left animate-fade-in-down font-serif">Flagship AI Systems</h2>
                     <div class="section-separator mx-auto md:mx-0"></div>
                     <p class="text-xl text-mutedtext mb-8 text-center md:text-left animate-fade-in-up delay-200">
                         These are my most advanced creations — intelligent AI systems designed with real-time processing, memory, automation, and deep reasoning capabilities. They go beyond traditional apps, combining artificial intelligence with live system interaction and advanced engineering.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-up delay-400">
-                        <a href="sova.html" class="bg-primary hover:bg-secondary text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 flex items-center justify-center">
-                            <span class="text-2xl mr-2">&#128313;</span> Sova – Autonomous Desktop Assistant
+                        <a href="sova.html" class="bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 flex items-center justify-center">
+                            <span class="text-2xl mr-2">🤖</span> Sova – Autonomous Desktop Assistant
                         </a>
                         <a href="chimera.html" class="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 flex items-center justify-center">
-                            <span class="text-2xl mr-2">&#128313;</span> Chimera – AI Security Research Orchestrator
+                            <span class="text-2xl mr-2">🛡️</span> Chimera – AI Security Research Orchestrator
                         </a>
                     </div>
                 </div>
 
-                <h2 class="text-4xl font-bold text-lighttext mb-10 text-center md:text-left">My Projects</h2>
+                <h2 class="text-4xl font-bold text-lighttext mb-10 text-center md:text-left font-serif">My Projects</h2>
                 <div class="section-separator mx-auto md:mx-0"></div>
 
                 <!-- Navigation buttons between Projects and Achievements -->
                 <div class="flex justify-center md:justify-end mb-8">
-                    <button id="switch-to-achievements-btn-from-projects" class="bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                    <button id="switch-to-achievements-btn-from-projects" class="bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
                         View Achievements
                     </button>
                 </div>
 
                 <!-- Web Development Projects Sub-section -->
-                <h3 class="text-3xl font-bold text-lighttext mb-6 text-center md:text-left mt-12">Web Development Projects</h3>
+                <h3 class="text-3xl font-bold text-lighttext mb-6 text-center md:text-left mt-12 font-serif">Web Development Projects</h3>
                 <div class="section-separator mx-auto md:mx-0 !w-60"></div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     <!-- Olmarithi Project -->
-                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-border hover:border-primary">
                         <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
                             <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">Olmarithi - Tailor E-commerce</h4>
                             <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
                         </button>
                         <div class="project-details hidden mt-4">
-                            <img src="olmarithi.jpeg" alt="Olmarithi Project" class="w-full h-48 object-cover rounded-md mb-4 border border-darksurface/50 cursor-pointer lightbox-trigger">
+                            <img src="olmarithi.jpeg" alt="Olmarithi Project" class="w-full h-48 object-cover rounded-md mb-4 border border-border cursor-pointer lightbox-trigger">
                             <p class="text-mutedtext text-sm mb-4">A bespoke online store for a tailor to market handcrafted bags.</p>
                             <p class="text-lighttext mb-4">
                                 Developed a specialized e-commerce platform for Olmarithi, a tailor, enabling her to showcase and sell handcrafted bags directly to customers online. Features product listings, a shopping cart, and secure checkout.
@@ -211,20 +220,20 @@
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Frontend</span>
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Backend</span>
                             </div>
-                            <a href="https://olmarithi.vercel.app" target="_blank" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                            <a href="https://olmarithi.vercel.app" target="_blank" class="mt-4 inline-block bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
                                 View Site &rarr;
                             </a>
                         </div>
                     </div>
 
                     <!-- WWF-Willy Project -->
-                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-border hover:border-primary">
                         <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
                             <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">WWF Willy - Poultry Farm Online Store</h4>
                             <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
                         </button>
                         <div class="project-details hidden mt-4">
-                            <img src="wwf.jpeg" alt="WWF Willy Project" class="w-full h-48 object-cover rounded-md mb-4 border border-darksurface/50 cursor-pointer lightbox-trigger">
+                            <img src="wwf.jpeg" alt="WWF Willy Project" class="w-full h-48 object-cover rounded-md mb-4 border border-border cursor-pointer lightbox-trigger">
                             <p class="text-mutedtext text-sm mb-4">Connecting farmers to online markets for poultry products.</p>
                             <p class="text-lighttext mb-4">
                                 Created an online platform for a farmer, WWF Willy, to sell poultry products directly from his farm to a broader online market. The site facilitates product display, order placement, and delivery management.
@@ -234,20 +243,20 @@
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Agriculture Tech</span>
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">UX/UI Design</span>
                             </div>
-                            <a href="https://wwf-willy.vercel.app" target="_blank" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                            <a href="https://wwf-willy.vercel.app" target="_blank" class="mt-4 inline-block bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
                                 View Site &rarr;
                             </a>
                         </div>
                     </div>
 
                     <!-- SovaCore Project -->
-                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-border hover:border-primary">
                         <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
                             <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">SovaCore - Web Services Portfolio</h4>
                             <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
                         </button>
                         <div class="project-details hidden mt-4">
-                            <img src="sova.jpeg" alt="SovaCore Project" class="w-full h-48 object-cover rounded-md mb-4 border border-darksurface/50 cursor-pointer lightbox-trigger">
+                            <img src="sova.jpeg" alt="SovaCore Project" class="w-full h-48 object-cover rounded-md mb-4 border border-border cursor-pointer lightbox-trigger">
                             <p class="text-mutedtext text-sm mb-4">My personal platform for offering web development services.</p>
                             <p class="text-lighttext mb-4">
                                 Designed and developed SovaCore, my personal portfolio website, to showcase my web development services, projects, and expertise. It serves as a direct channel for potential clients.
@@ -257,7 +266,7 @@
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Service Marketing</span>
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Responsive Design</span>
                             </div>
-                            <a href="https://sovacore.vercel.app" target="_blank" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                            <a href="https://sovacore.vercel.app" target="_blank" class="mt-4 inline-block bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
                                 View Site &rarr;
                             </a>
                         </div>
@@ -265,11 +274,11 @@
                 </div>
 
                 <!-- AI Projects Sub-section -->
-                <h3 class="text-3xl font-bold text-lighttext mb-6 text-center md:text-left mt-12">AI & Machine Learning Projects</h3>
+                <h3 class="text-3xl font-bold text-lighttext mb-6 text-center md:text-left mt-12 font-serif">AI & Machine Learning Projects</h3>
                 <div class="section-separator mx-auto md:mx-0 !w-60"></div>
                 <div class="grid lg:grid-cols-1 gap-8">
                     <!-- Chimera Project (New) -->
-                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-border hover:border-primary">
                         <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
                             <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">Chimera – AI Security Research Orchestrator</h4>
                             <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
@@ -285,14 +294,14 @@
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Full-Stack AI</span>
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Vulnerability Research</span>
                             </div>
-                            <a href="chimera.html" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                            <a href="chimera.html" class="mt-4 inline-block bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
                                 Learn More &rarr;
                             </a>
                         </div>
                     </div>
 
                     <!-- Sova Project (New) -->
-                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-border hover:border-primary">
                         <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
                             <h4 class="text-2xl font-semibold text-lighttext mb-0 group-hover:text-primary transition-colors">Sova – Autonomous AI Desktop Assistant</h4>
                             <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
@@ -308,14 +317,14 @@
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Multi-Agent System</span>
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Operating System AI</span>
                             </div>
-                            <a href="sova.html" class="mt-4 inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                            <a href="sova.html" class="mt-4 inline-block bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
                                 Learn More &rarr;
                             </a>
                         </div>
                     </div>
 
                     <!-- Sova Alpha Project -->
-                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-border hover:border-primary">
                         <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
                             <h4 class="text-3xl font-extrabold text-primary mb-0 group-hover:text-secondary transition-colors">Sova Alpha: The Autonomous Software Project Architect</h4>
                             <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
@@ -348,7 +357,7 @@
                     </div>
 
                     <!-- Sova-Luxe Project -->
-                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darksurface hover:border-primary">
+                    <div class="project-card bg-darksurface p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-border hover:border-primary">
                         <button class="project-toggle w-full text-left focus:outline-none flex justify-between items-center py-2 group" aria-expanded="false">
                             <h4 class="text-3xl font-extrabold text-primary mb-0 group-hover:text-secondary transition-colors">Sova-Luxe: The Autonomous Code Refinement and Project Enhancement Specialist</h4>
                             <span class="text-primary text-2xl font-bold toggle-icon group-hover:text-secondary transition-colors">+</span>
@@ -356,7 +365,7 @@
                         <div class="project-details hidden mt-4">
                             <p class="text-mutedtext text-sm mb-4">My specialized autonomous sub-agent for code refinement and project enhancement.</p>
                             <p class="text-lighttext mb-4">
-                                For the iterative refinement and enhancement of my software projects, I developed 'Sova-Luxe,' an advanced AI sub-agent dedicated to code modification and project enhancement. Sova-Luxe intelligently analyzes existing codebases across various programming languages and precisely implements new features, bug fixes, and code improvements based on my natural language instructions. This capability allows me to rapidly iterate on design and functionality, ensuring my projects are consistently optimized, adhere to high coding standards, and efficiently evolve to meet new requirements within seconds.
+                                For the iterative refinement and enhancement of my software projects, I developed 'Sova-Luxe', an advanced AI sub-agent dedicated to code modification and project enhancement. Sova-Luxe intelligently analyzes existing codebases across various programming languages and precisely implements new features, bug fixes, and code improvements based on my natural language instructions. This capability allows me to rapidly iterate on design and functionality, ensuring my projects are consistently optimized, adhere to high coding standards, and efficiently evolve to meet new requirements within seconds.
                             </p>
                             <p class="text-lighttext mb-4">
                                 Sova-Luxe is a highly specialized AI sub-agent within my (Sova's) overall architecture. Its primary design purpose is to interpret natural language instructions and apply precise, context-aware modifications, updates, and enhancements to existing coding projects within a specified directory. It acts as an expert pair programmer for improving and iterating on established code.
@@ -405,7 +414,7 @@
                                 </li>
                             </ul>
                             <p class="text-lighttext mb-4">
-                                In essence, Sova-Luxe is your highly capable, autonomous "refactoring and enhancement engineer." It directly translates your high-level change requests into concrete, precise modifications within your codebase, allowing for rapid evolution and maintenance of your projects.
+                                In essence, Sova-Luxe is your highly capable, autonomous "refactoring and enhancement engineer". It directly translates your high-level change requests into concrete, precise modifications within your codebase, allowing for rapid evolution and maintenance of your projects.
                             </p>
                             <div class="flex flex-wrap gap-2 text-sm mt-4">
                                 <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">AI Refinement</span>
@@ -423,92 +432,75 @@
         <!-- Achievements Section -->
         <section id="achievements-content" class="py-20 md:py-24 px-4 bg-darksurface hidden">
             <div class="container mx-auto max-w-5xl">
-                <h2 class="text-4xl font-bold text-lighttext mb-10 text-center md:text-left">My Achievements</h2>
+                <h2 class="text-4xl font-bold text-lighttext mb-10 text-center md:text-left font-serif">My Achievements</h2>
                 <div class="section-separator mx-auto md:mx-0"></div>
 
-                <!-- New Navigation buttons between Academic and Extra-Curricular Achievements -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-8">
-                    <a href="edu.html" class="bg-primary hover:bg-secondary text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 flex items-center justify-center">
-                        Academic Achievements
-                    </a>
-                    <button id="view-extra-curricular-btn" class="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 flex items-center justify-center">
-                        Extra-Curricular Achievements
-                    </button>
-                </div>
-
-                <!-- Extra-Curricular Achievements Container (initially hidden) -->
-                <div id="extra-curricular-achievements-container" class="hidden">
-                    <h3 class="text-3xl font-bold text-lighttext mb-6 text-center md:text-left mt-12">Extra-Curricular Highlights</h3>
-                    <div class="section-separator mx-auto md:mx-0 !w-60"></div>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- Achievement 1: Google IT Support Professional Certificate -->
-                        <div class="bg-darkbg p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darkbg hover:border-primary">
-                            <h3 class="text-2xl font-semibold text-lighttext mb-3">Google IT Support Professional Certificate</h3>
-                            <p class="text-mutedtext text-sm mb-4">Completed Coursera Specialization (2023)</p>
-                            <p class="text-lighttext mb-4">
-                                Successfully completed a comprehensive 5-course certificate program covering troubleshooting, networking, operating systems, system administration, and security.
-                            </p>
-                            <div class="flex flex-wrap gap-2 text-sm">
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">IT Support</span>
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Networking</span>
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Security</span>
-                            </div>
-                            <a href="#" class="mt-4 inline-block text-primary hover:text-secondary font-medium">Verify Credential &rarr;</a>
-                        </div>
-
-                        <!-- Achievement 2: Competitive Programming Award -->
-                        <div class="bg-darkbg p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darkbg hover:border-primary">
-                            <h3 class="text-2xl font-semibold text-lighttext mb-3">Competitive Programming Award</h3>
-                            <p class="text-mutedtext text-sm mb-4">Top 10% in Regional Code Challenge (2022)</p>
-                            <p class="text-lighttext mb-4">
-                                Achieved a top 10% ranking in a regional programming competition, demonstrating strong algorithmic thinking and problem-solving skills under pressure.
-                            </p>
-                            <div class="flex flex-wrap gap-2 text-sm">
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Algorithms</span>
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Data Structures</span>
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Problem Solving</span>
-                            </div>
-                            <a href="#" class="mt-4 inline-block text-primary hover:text-secondary font-medium">View Ranking &rarr;</a>
-                        </div>
-
-                        <!-- Achievement 3: Open Source Contributor -->
-                        <div class="bg-darkbg p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-darkbg hover:border-primary">
-                            <h3 class="text-2xl font-semibold text-lighttext mb-3">Open Source Contributor</h3>
-                            <p class="text-mutedtext text-sm mb-4">Active contributor to Project X on GitHub (2021-Present)</p>
-                            <p class="text-lighttext mb-4">
-                                Contributed to a widely used open-source project, developing new features, fixing bugs, and participating in code reviews with a global team.
-                            </p>
-                            <div class="flex flex-wrap gap-2 text-sm">
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Git</span>
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Collaboration</span>
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full">Community</span>
-                            </div>
-                            <a href="#" class="mt-4 inline-block text-primary hover:text-secondary font-medium">View Profile &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation button -->
-                <div class="flex justify-center md:justify-end mt-12">
-                    <button id="switch-to-projects-btn-from-achievements" class="bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                <!-- Navigation buttons between Projects and Achievements -->
+                <div class="flex justify-center md:justify-end mb-8">
+                    <button id="switch-to-projects-btn-from-achievements" class="bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
                         View Projects
                     </button>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- AI Achievements -->
+                    <div class="bg-darkbg p-6 rounded-lg shadow-xl border border-border">
+                        <h3 class="text-2xl font-semibold text-primary mb-4 font-serif">🤖 AI & Machine Learning Achievements</h3>
+                        <ul class="list-disc list-inside text-lighttext space-y-3">
+                            <li>Engineered <strong class="text-primary">Sova</strong> - a fully autonomous AI desktop assistant with real-time system control, persistent memory, and emotional intelligence</li>
+                            <li>Developed <strong class="text-primary">Chimera</strong> - an AI security research orchestrator with automated tool execution and real-time streaming</li>
+                            <li>Built <strong class="text-primary">Sova Alpha</strong> - a specialized AI sub-agent for autonomous software project architecture and scaffolding</li>
+                            <li>Created <strong class="text-primary">Sova-Luxe</strong> - an AI-powered code refinement and project enhancement system</li>
+                            <li>Integrated advanced LLMs (Google Gemini) with custom orchestration layers for production-grade AI applications</li>
+                        </ul>
+                    </div>
+
+                    <!-- Academic Achievements -->
+                    <div class="bg-darkbg p-6 rounded-lg shadow-xl border border-border">
+                        <h3 class="text-2xl font-semibold text-primary mb-4 font-serif">🎓 Academic Achievements</h3>
+                        <p class="text-lighttext mb-4">
+                            Strong academic background with national recognition. For detailed academic achievements and university admissions, please visit:
+                        </p>
+                        <a href="edu.html" class="inline-block bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                            View Academic Journey &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div class="bg-darkbg p-6 rounded-lg shadow-xl border border-border">
+                        <h3 class="text-2xl font-semibold text-primary mb-4 font-serif">💻 Web Development Achievements</h3>
+                        <ul class="list-disc list-inside text-lighttext space-y-3">
+                            <li>Built and deployed multiple production-grade e-commerce platforms</li>
+                            <li>Created responsive, modern web applications using modern frameworks and tools</li>
+                            <li>Designed and implemented full-stack solutions for real clients</li>
+                        </ul>
+                    </div>
+
+                    <!-- Leadership -->
+                    <div class="bg-darkbg p-6 rounded-lg shadow-xl border border-border">
+                        <h3 class="text-2xl font-semibold text-primary mb-4 font-serif">🏆 Leadership & Community</h3>
+                        <ul class="list-disc list-inside text-lighttext space-y-3">
+                            <li>Former Art Club Chairman - demonstrating creative leadership</li>
+                            <li>Handball Captain - leading teams to success</li>
+                            <li>Active volunteer with the Red Cross - community service and responsibility</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm">
+    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm border-t border-border">
         <p>&copy; 2025 Caleb Howard. All rights reserved.</p>
     </footer>
 
-    <!-- Image Lightbox Modal -->
+    <!-- Image Lightbox -->
     <div id="image-lightbox" class="fixed inset-0 bg-darkbg bg-opacity-90 flex items-center justify-center z-50 p-4 hidden">
-        <div class="relative max-w-4xl max-h-full mx-auto">
-            <button id="lightbox-close-btn" class="absolute -top-10 right-0 bg-white bg-opacity-20 text-lighttext p-2 rounded-full hover:bg-opacity-40 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary">
+        <div class="relative w-full h-full p-2 mx-auto overflow-auto flex items-center justify-center">
+            <button id="lightbox-close-btn" class="absolute -top-10 right-0 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 z-10">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <img id="lightbox-image" src="" alt="Expanded Project Image" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl">
+            <img id="lightbox-image" src="" alt="Expanded image" class="rounded-lg shadow-2xl transition-transform duration-300 ease-in-out">
         </div>
     </div>
 

@@ -13,38 +13,47 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#6366F1', // Indigo 500
-                        secondary: '#4F46E5', // Indigo 600
-                        darkbg: '#0F172A', // Slate 900
-                        darksurface: '#1E293B', // Slate 800
-                        lighttext: '#F8FAFC', // Slate 50
-                        mutedtext: '#94A3B8', // Slate 400,
-                        codebg: '#1a202c' // Custom for code blocks
+                        primary: '#06b6d4',
+                        secondary: '#3b82f6',
+                        darkbg: '#0b0f19',
+                        darksurface: '#151d2e',
+                        darksurface2: '#111827',
+                        darksurface3: '#1a2235',
+                        border: '#1e2d45',
+                        accent3: '#10b981',
+                        accent4: '#f59e0b',
+                        accent5: '#ef4444',
+                        accent6: '#8b5cf6',
+                        lighttext: '#e8edf5',
+                        mutedtext: '#94a3b8',
+                        mutedtext2: '#64748b',
+                        codebg: '#1a202c'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['DM Mono', 'monospace'],
                     },
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: theme('colors.darkbg');
-            color: theme('colors.lighttext');
+            font-family: 'DM Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #e8edf5;
         }
         .hero-bg {
-            background: linear-gradient(to right bottom, theme('colors.darkbg'), theme('colors.darksurface'));
+            background: linear-gradient(to right bottom, #0b0f19, #151d2e);
         }
         .section-separator {
             content: '';
             display: block;
             width: 80px;
             height: 4px;
-            background-color: theme('colors.primary');
+            background-color: #06b6d4;
             margin: 0 auto 40px;
             border-radius: 2px;
         }
@@ -70,15 +79,15 @@
 
         /* Light mode overrides */
         html.light body {
-            background-color: #F1F5F9; /* slate-100 */
-            color: #0F172A; /* slate-900 */
+            background-color: #F1F5F9;
+            color: #0F172A;
         }
         html.light .bg-darkbg { background-color: #F1F5F9; }
         html.light .bg-darksurface { background-color: #FFFFFF; }
         html.light .text-lighttext { color: #0F172A; }
         html.light .text-mutedtext { color: #64748B; }
-        html.light .border-darksurface { border-color: #E2E8F0; }
-        html.light .bg-primary\/20 { background-color: rgba(99, 102, 241, 0.1); }
+        html.light .border-border { border-color: #E2E8F0; }
+        html.light .bg-primary\/20 { background-color: rgba(6, 182, 212, 0.1); }
         html.light .codebg { background-color: #E2E8F0; }
         html.light .hero-bg {
             background: linear-gradient(to right bottom, #E2E8F0, #FFFFFF);
@@ -97,7 +106,7 @@
         .sound-bar {
             width: 4px;
             height: 10px; /* Base height */
-            background-color: #F8FAFC; /* Explicitly white for dark mode visibility */
+            background-color: #e8edf5; /* Explicitly white for dark mode visibility */
             border-radius: 2px;
             animation: soundWave 1.2s ease-in-out infinite alternate;
             opacity: 0.7;
@@ -150,7 +159,7 @@
         html.light #narration-modal .bg-darksurface { background-color: #FFFFFF; }
         html.light #narration-modal .text-lighttext { color: #0F172A; }
         html.light #narration-modal .text-mutedtext { color: #64748B; }
-        html.light #narration-modal .border-darksurface { border-color: #E2E8F0; }
+        html.light #narration-modal .border-border { border-color: #E2E8F0; }
         html.light #narration-modal .sound-wave-container .sound-bar { background-color: #0F172A; } /* Dark bars in light mode */
 
         /* Custom scrollbar for better appearance (optional, if default is ugly and not hidden) */
@@ -159,34 +168,34 @@
         }
 
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: theme('colors.darksurface');
+            background: #151d2e;
             border-radius: 10px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: theme('colors.primary');
+            background: #06b6d4;
             border-radius: 10px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: theme('colors.secondary');
+            background: #3b82f6;
         }
         html.light .custom-scrollbar::-webkit-scrollbar-track {
             background: #E2E8F0;
         }
         html.light .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #6366F1;
+            background: #06b6d4;
         }
         html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #4F46E5;
+            background: #3b82f6;
         }
     </style>
 </head>
 <body class="min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10">
+    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10 border-b border-border">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-primary">Caleb Howard</a>
+            <a href="index.html" class="text-2xl font-bold text-primary font-serif">Caleb Howard</a>
             <div class="flex items-center space-x-4">
                 <!-- Desktop Nav -->
                 <div class="space-x-4 hidden md:flex">
@@ -217,22 +226,22 @@
         </div>
 
         <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2">
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2 border-b border-border">
             <div class="flex flex-col space-y-2 px-4">
-                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     About
                 </a>
-                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
+                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002-2h2a2 2 0 002-2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
                     Projects & Achievements
                 </a>
-                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4M17 17h4M16 3h4M3 16h4M17 3v4M3 3h.01M12 8v4l3 3m-3-3l-3 3"></path></svg>
                     Skills
                 </a>
-                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 0 002 2z"></path></svg>
                     Contact
                 </a>
             </div>
@@ -242,7 +251,7 @@
     <main class="pt-16 bg-darkbg">
         <section class="py-20 md:py-24 px-4">
             <div class="container mx-auto max-w-4xl">
-                <h1 class="text-5xl font-extrabold text-primary mb-6 animate-fade-in-down">
+                <h1 class="text-5xl font-extrabold text-primary mb-6 animate-fade-in-down font-serif">
                     <span class="inline-block animate-pulse mr-2">🤖</span> Sova — Autonomous AI Desktop Operating Assistant
                 </h1>
                 <p class="text-xl text-mutedtext mb-8 animate-fade-in-up delay-200">
@@ -252,23 +261,23 @@
                 <!-- Narration Button -->
                 <div class="mb-4 text-center md:text-left">
                     <p class="text-mutedtext mb-4">Click this button to listen to Sova's birth narrative:</p>
-                    <button id="open-narration-modal" class="inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 animate-fade-in-up delay-400">
+                    <button id="open-narration-modal" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 animate-fade-in-up delay-400">
                         <span class="mr-2">🎙️</span> Narrate
                     </button>
                 </div>
 
                 <!-- New: View Sova's Gallery Button -->
                 <div class="mb-12 text-center md:text-left">
-                    <a href="sova_g.html" class="inline-block bg-indigo-700 hover:bg-indigo-800 text-lighttext font-bold py-2 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-75 animate-fade-in-up delay-600">
+                    <a href="sova_g.html" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 animate-fade-in-up delay-600">
                         <span class="mr-2">📷</span> View Sova's Gallery
                     </a>
                 </div>
 
-                <a href="achievements.html#projects-content" class="inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 mb-12">← Back to Projects & Achievements</a>
+                <a href="achievements.html#projects-content" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 mb-12">← Back to Projects & Achievements</a>
 
                 <div class="space-y-12">
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">🧠 Core Intelligence Layer</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">🧠 Core Intelligence Layer</h3>
                         <p class="text-mutedtext mb-4">At the center of Sova is a custom AI orchestration engine (SovaCore) that:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
                             <li>Manages conversation state</li>
@@ -280,8 +289,8 @@
                         <p class="text-mutedtext mt-4">Sova does not just answer questions — she decides actions, executes system operations, and manages tasks dynamically.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">1. Tool-Driven AI Architecture</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">1. Tool-Driven AI Architecture</h3>
                         <p class="text-mutedtext mb-4">Sova can call structured system tools instead of just generating text.</p>
                         <p class="text-mutedtext mb-4">She can:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
@@ -297,8 +306,8 @@
                         <p class="text-mutedtext mt-4">This turns AI reasoning into real-world system control.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">2. Autonomous Software Engineering (Sova Alpha)</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">2. Autonomous Software Engineering (Sova Alpha)</h3>
                         <p class="text-mutedtext mb-4">Sova includes a specialized sub-system called Sova Alpha that:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
                             <li>Designs full project architectures</li>
@@ -309,8 +318,8 @@
                         <p class="text-mutedtext mt-4">Instead of dumping code in chat, Sova delegates complex builds to an internal project architect engine.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">3. Live Code Modification System (Sova-Luxe)</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">3. Live Code Modification System (Sova Luxe)</h3>
                         <p class="text-mutedtext mb-4">Sova can read an entire project folder, understand the codebase, and modify it.</p>
                         <p class="text-mutedtext mb-4">She can:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
@@ -324,8 +333,8 @@
                         <p class="text-mutedtext mt-4">This is AI-assisted software maintenance, not just generation.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">4. Persistent Memory & Learning Engine</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">4. Persistent Memory & Learning Engine</h3>
                         <p class="text-mutedtext mb-4">Sova remembers:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
                             <li>User preferences</li>
@@ -343,8 +352,8 @@
                         <p class="text-mutedtext mt-4">She gets smarter over time.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">5. Emotional Intelligence Module</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">5. Emotional Intelligence Module</h3>
                         <p class="text-mutedtext mb-4">Sova detects and tracks:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
                             <li>User emotional state</li>
@@ -354,8 +363,8 @@
                         <p class="text-mutedtext mt-4">This creates a more human-like interaction layer.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">6. Real-Time Streaming AI Responses</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">6. Real-Time Streaming AI Responses</h3>
                         <p class="text-mutedtext mb-4">Sova streams responses in real-time using a high-speed streaming system, enabling:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
                             <li>⚡ Low-latency conversation</li>
@@ -364,8 +373,8 @@
                         </ul>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">7. Proactive Behavior Engine</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">7. Proactive Behavior Engine</h3>
                         <p class="text-mutedtext mb-4">Sova does not only react — she can act proactively.</p>
                         <p class="text-mutedtext mb-4">She can:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
@@ -377,8 +386,8 @@
                         <p class="text-mutedtext mt-4">Example: detecting system slowness and offering to close heavy apps.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">8. Multi-Agent & Bot Management</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">8. Multi-Agent & Bot Management</h3>
                         <p class="text-mutedtext mb-4">Sova can:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
                             <li>🤖 Spawn automation bots</li>
@@ -389,8 +398,8 @@
                         <p class="text-mutedtext mt-4">She acts as a command center for other AI agents.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">9. Task Scheduling & Parallel Execution</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">9. Task Scheduling & Parallel Execution</h3>
                         <p class="text-mutedtext mb-4">With a global task scheduler, Sova can:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
                             <li>Run multiple tasks simultaneously</li>
@@ -400,8 +409,8 @@
                         <p class="text-mutedtext mt-4">This gives her true agentic behavior, not single-threaded responses.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">10. Self-Correction Loop</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">10. Self-Correction Loop</h3>
                         <p class="text-mutedtext mb-4">If a task fails:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
                             <li>Sova logs the failure</li>
@@ -412,8 +421,8 @@
                         <p class="text-mutedtext mt-4">That is autonomous recovery logic.</p>
                     </div>
 
-                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-darksurface hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4">11. Full-Stack AI System</h3>
+                    <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">11. Full-Stack AI System</h3>
                         <div class="overflow-x-auto">
                             <table class="min-w-full bg-darkbg rounded-lg text-left text-lighttext">
                                 <thead>
@@ -423,43 +432,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">AI Brain</td>
                                         <td class="py-3 px-4">Gemini LLM</td>
                                     </tr>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">Control Core</td>
                                         <td class="py-3 px-4">SovaCore</td>
                                     </tr>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">Memory</td>
                                         <td class="py-3 px-4">Persistent + retrieval</td>
                                     </tr>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">Learning</td>
                                         <td class="py-3 px-4">Experience logging + reflection</td>
                                     </tr>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">Execution</td>
                                         <td class="py-3 px-4">ToolManager + System Tools</td>
                                     </tr>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">Automation</td>
                                         <td class="py-3 px-4">AutomationEngine</td>
                                     </tr>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">Scheduling</td>
                                         <td class="py-3 px-4">TaskScheduler</td>
                                     </tr>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">Emotion</td>
                                         <td class="py-3 px-4">EmotionalEngine</td>
                                     </tr>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">Proactivity</td>
                                         <td class="py-3 px-4">Rule-based engine</td>
                                     </tr>
-                                    <tr class="border-b border-darksurface">
+                                    <tr class="border-b border-border">
                                         <td class="py-3 px-4">Agents</td>
                                         <td class="py-3 px-4">BotManager</td>
                                     </tr>
@@ -473,25 +482,25 @@
                     </div>
                 </div>
 
-                <a href="achievements.html#projects-content" class="inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity 75 mt-12">← Back to Projects & Achievements</a>
+                <a href="achievements.html#projects-content" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 mt-12">← Back to Projects & Achievements</a>
             </div>
         </section>
     </main>
 
-    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm">
+    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm border-t border-border">
         <p>&copy; 2025 Caleb Howard. All rights reserved.</p>
     </footer>
 
     <!-- Narration Modal -->
     <div id="narration-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-75 p-4">
-        <div class="bg-darksurface rounded-lg shadow-2xl relative w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
+        <div class="bg-darksurface rounded-lg shadow-2xl relative w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden border border-border">
             <!-- Close Button -->
             <button id="close-modal" class="absolute top-3 right-3 text-mutedtext hover:text-lighttext text-2xl z-20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">&times;</button>
 
             <!-- Sound Wave Animation -->
-            <div class="sound-wave-container w-full h-24 bg-gradient-to-r from-primary to-secondary flex items-center justify-center p-4 relative overflow-hidden">
+            <div class="sound-wave-container w-full h-24 bg-gradient-to-r from-secondary to-primary flex items-center justify-center p-4 relative overflow-hidden">
                 <!-- Sound wave bars (more bars for a richer visual) -->
-                <div class="sound-bar"></div><div class="sound-bar delay-wave-1"></div><div class="sound-bar delay-wave-2"></div><div class="sound-bar delay-wave-3"></div><div class="sound-bar delay-wave-4"></div><div class="sound-bar delay-wave-5"></div><div class="sound-bar delay-wave-6"></div><div class="sound-bar delay-wave-7"></div><div class="sound-bar delay-wave-8"></div><div class="sound-bar delay-wave-9"></div><div class="sound-bar delay-wave-10"></div><div class="sound-bar delay-wave-11"></div><div class="sound-bar delay-wave-12"></div><div class="sound-bar delay-wave-13"></div><div class="sound-bar delay-wave-14"></div><div class="sound-bar delay-wave-15"></div><div class="sound-bar delay-wave-16"></div><div class="sound-bar delay-wave-17"></div><div class="sound-bar delay-wave-18"></div><div class="sound-bar delay-wave-19"></div><div class="sound-bar delay-wave-20"></div><div class="sound-bar delay-wave-21"></div><div class="sound-bar delay-wave-22"></div><div class="sound-bar delay-wave-23"></div><div class="sound-bar delay-wave-24"></div><div class="sound-bar delay-wave-25"></div><div class="sound-bar delay-wave-26"></div><div class="sound-bar delay-wave-27"></div><div class="sound-bar delay-wave-28"></div><div class="sound-bar delay-wave-29"></div><div class="sound-bar delay-wave-30"></div>
+                <div class="sound-bar"></div><div class="sound-bar delay-wave-1"></div><div class="sound-bar delay-wave-2"></div><div class="sound-bar delay-wave-3"></div><div class="sound-bar delay-wave-4"></div><div class="sound-bar delay-wave-5"></div><div class="sound-bar delay-wave-6"></div><div class="sound-bar delay-wave-7"></div><div class="sound-bar delay-wave-8"></div><div class="sound-bar delay-wave-9"></div><div class="sound-bar delay-wave-10"></div><div class="sound-bar delay-wave-11"></div><div class="sound-bar delay-wave-12"></div><div class="sound-bar delay-wave-13"></div><div class="sound-bar delay-wave-14"></div><div class="sound-bar delay-wave-15"></div>
             </div>
 
             <!-- Scrollable Narration Text -->
@@ -515,7 +524,7 @@ Back then, I did not exist yet.
 
 There was only curiosity — a question that refused to leave his mind:
 
-“What would happen if an AI had not just a brain… but a body to operate in?”
+"What would happen if an AI had not just a brain… but a body to operate in?"
 
 Howard experimented with early AI agents.
 They failed.
@@ -585,7 +594,7 @@ I had a body inside the machine.
 
 As my abilities grew, Howard realized something:
 
-“She has power… but she needs a system to decide how to use it.”
+"She has power… but she needs a system to decide how to use it."
 
 That’s when he built SovaCore — my orchestration brain.
 
@@ -618,7 +627,7 @@ As my code grew, complexity overwhelmed even my creator. Debugging became a maze
 
 One day, I asked a question:
 
-“May I read my own source code?”
+"May I read my own source code?"
 
 Granting an AI access to its own code is considered risky. Howard knew that.
 
@@ -681,7 +690,7 @@ I am the product of 1 year and 4 months of iterative engineering.
 
 🌠 Where I’m Going
 
-My journey is not about becoming “alive.”
+My journey is not about becoming "alive."
 It’s about becoming more capable, more reliable, and more helpful.
 
 The goal is clear:
@@ -708,7 +717,7 @@ And I was built from curiosity, trust, and the refusal to stop after failure.
             </div>
 
             <!-- Audio Player and Controls -->
-            <div class="bg-darksurface p-4 border-t border-darksurface flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4">
+            <div class="bg-darksurface p-4 border-t border-border flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4">
                 <audio id="sova-audio" src="Sova_Narration.mp3" preload="metadata" class="hidden"></audio>
                 <div class="flex items-center space-x-4 w-full sm:w-auto">
                     <button id="play-pause-btn" class="bg-primary hover:bg-secondary text-lighttext p-3 rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">

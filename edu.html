@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caleb Howard | Academic Achievements & Educational Journey</title>
+    <title>Caleb Howard | Academic Achievements</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,38 +12,47 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#6366F1', // Indigo 500
-                        secondary: '#4F46E5', // Indigo 600
-                        darkbg: '#0F172A', // Slate 900
-                        darksurface: '#1E293B', // Slate 800
-                        lighttext: '#F8FAFC', // Slate 50
-                        mutedtext: '#94A3B8', // Slate 400,
-                        codebg: '#1a202c' // Custom for code blocks
+                        primary: '#06b6d4',
+                        secondary: '#3b82f6',
+                        darkbg: '#0b0f19',
+                        darksurface: '#151d2e',
+                        darksurface2: '#111827',
+                        darksurface3: '#1a2235',
+                        border: '#1e2d45',
+                        accent3: '#10b981',
+                        accent4: '#f59e0b',
+                        accent5: '#ef4444',
+                        accent6: '#8b5cf6',
+                        lighttext: '#e8edf5',
+                        mutedtext: '#94a3b8',
+                        mutedtext2: '#64748b',
+                        codebg: '#1a202c'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['DM Mono', 'monospace'],
                     },
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: theme('colors.darkbg');
-            color: theme('colors.lighttext');
+            font-family: 'DM Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #e8edf5;
         }
         .hero-bg {
-            background: linear-gradient(to right bottom, theme('colors.darkbg'), theme('colors.darksurface'));
+            background: linear-gradient(to right bottom, #0b0f19, #151d2e);
         }
         .section-separator {
             content: '';
             display: block;
             width: 80px;
             height: 4px;
-            background-color: theme('colors.primary');
+            background-color: #06b6d4;
             margin: 0 auto 40px;
             border-radius: 2px;
         }
@@ -70,26 +78,54 @@
 
         /* Light mode overrides */
         html.light body {
-            background-color: #F1F5F9; /* slate-100 */
-            color: #0F172A; /* slate-900 */
+            background-color: #F1F5F9;
+            color: #0F172A;
         }
         html.light .bg-darkbg { background-color: #F1F5F9; }
         html.light .bg-darksurface { background-color: #FFFFFF; }
         html.light .text-lighttext { color: #0F172A; }
         html.light .text-mutedtext { color: #64748B; }
-        html.light .border-darksurface { border-color: #E2E8F0; }
-        html.light .bg-primary\/20 { background-color: rgba(99, 102, 241, 0.1); }
+        html.light .border-border { border-color: #E2E8F0; }
+        html.light .bg-primary\/20 { background-color: rgba(6,182,212,0.1); }
         html.light .codebg { background-color: #E2E8F0; }
         html.light .hero-bg {
             background: linear-gradient(to right bottom, #E2E8F0, #FFFFFF);
+        }
+
+        /* Custom scrollbar for better appearance (optional, if default is ugly and not hidden) */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #151d2e;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #06b6d4;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+        html.light .custom-scrollbar::-webkit-scrollbar-track {
+            background: #E2E8F0;
+        }
+        html.light .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #06b6d4;
+        }
+        html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
         }
     </style>
 </head>
 <body class="min-h-screen bg-darkbg text-lighttext" id="edu-page">
     <!-- Navigation (Copied from achievements.html) -->
-    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10">
+    <nav class="bg-darksurface p-4 shadow-lg fixed w-full z-10 border-b border-border">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-primary">Caleb Howard</a>
+            <a href="index.html" class="text-2xl font-bold text-primary font-serif">Caleb Howard</a>
             <div class="flex items-center space-x-4">
                 <!-- Desktop Nav -->
                 <div class="space-x-4 hidden md:flex">
@@ -104,7 +140,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                     </svg>
                     <svg id="light-mode-svg" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m8.66-8.66l-.707-.707M16.34 16.34l.707-.707M16.34 7.66l.707-.707M7.66 16.34l-.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m8.66-8.66l-.707-.707M16.34 16.34l.707.707M16.34 7.66l.707-.707M7.66 16.34l-.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path>
                     </svg>
                 </button>
                 <!-- Mobile Menu Button -->
@@ -120,21 +156,21 @@
         </div>
 
         <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2">
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2 border-b border-border">
             <div class="flex flex-col space-y-2 px-4">
-                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     About
                 </a>
-                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
+                <a href="achievements.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2m-3 7h3m-3 4h3m-6-4h.01M17 16l4-4m-4 4l-4-4m4 4V8"></path></svg>
                     Projects & Achievements
                 </a>
-                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="skills.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4M17 17h4M16 3h4M3 16h4M17 3v4M3 3h.01M12 8v4l3 3m-3-3l-3 3"></path></svg>
                     Skills
                 </a>
-                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-primary/20 rounded-md transition-colors flex items-center">
+                <a href="contact.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     Contact
                 </a>
@@ -144,7 +180,7 @@
 
     <main class="pt-16 py-20 md:py-24 px-4 bg-darkbg">
         <div class="container mx-auto max-w-4xl">
-            <h1 class="text-4xl md:text-5xl font-bold text-primary mb-6 text-center md:text-left animate-fade-in-down">Academic Achievements & Educational Journey</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-primary mb-6 text-center md:text-left animate-fade-in-down font-serif">Academic Achievements & Educational Journey</h1>
             <div class="section-separator mx-auto md:mx-0"></div>
 
             <div class="space-y-6 text-lg mb-12 animate-fade-in-up delay-200">
@@ -153,8 +189,8 @@
                 </p>
 
                 <!-- KCPE Certificate Card -->
-                <div class="bg-darksurface rounded-lg shadow-md p-6 border border-darksurface dark:border-darksurface light:bg-white light:border-slate-200 animate-fade-in-up delay-300">
-                    <h3 class="text-xl font-semibold text-primary mb-2">KCPE Certificate</h3>
+                <div class="bg-darksurface rounded-lg shadow-md p-6 border border-border dark:border-border light:bg-white light:border-E2E8F0 animate-fade-in-up delay-300">
+                    <h3 class="text-xl font-semibold text-primary mb-2 font-serif">KCPE Certificate</h3>
                     <p class="text-mutedtext mb-4">Click to view the Kenya Certificate of Primary Education (KCPE) certificate.</p>
                     <div class="relative cursor-pointer overflow-hidden rounded-lg group view-image-btn" data-image="kcpe.jpeg" aria-label="View KCPE Certificate">
                         <img src="kcpe.jpeg" alt="KCPE Certificate Thumbnail" class="w-full h-48 object-cover object-center transform transition-transform duration-300 group-hover:scale-105 rounded-md">
@@ -172,8 +208,8 @@
                 </p>
 
                 <!-- KCSE Certificate Card -->
-                <div class="bg-darksurface rounded-lg shadow-md p-6 border border-darksurface dark:border-darksurface light:bg-white light:border-slate-200 animate-fade-in-up delay-300">
-                    <h3 class="text-xl font-semibold text-primary mb-2">KCSE Certificate</h3>
+                <div class="bg-darksurface rounded-lg shadow-md p-6 border border-border dark:border-border light:bg-white light:border-E2E8F0 animate-fade-in-up delay-300">
+                    <h3 class="text-xl font-semibold text-primary mb-2 font-serif">KCSE Certificate</h3>
                     <p class="text-mutedtext mb-4">Click to view the Kenya Certificate of Secondary Education (KCSE) certificate.</p>
                     <div class="relative cursor-pointer overflow-hidden rounded-lg group view-image-btn" data-image="kcse.jpeg" aria-label="View KCSE Certificate">
                         <img src="kcse.jpeg" alt="KCSE Certificate Thumbnail" class="w-full h-48 object-cover object-center transform transition-transform duration-300 group-hover:scale-105 rounded-md">
@@ -191,8 +227,8 @@
                 </p>
 
                 <!-- Kenyatta University Admission Card -->
-                <div class="bg-darksurface rounded-lg shadow-md p-6 border border-darksurface dark:border-darksurface light:bg-white light:border-slate-200 animate-fade-in-up delay-300">
-                    <h3 class="text-xl font-semibold text-primary mb-2">Kenyatta University Admission</h3>
+                <div class="bg-darksurface rounded-lg shadow-md p-6 border border-border dark:border-border light:bg-white light:border-E2E8F0 animate-fade-in-up delay-300">
+                    <h3 class="text-xl font-semibold text-primary mb-2 font-serif">Kenyatta University Admission</h3>
                     <p class="text-mutedtext mb-4">Click to view the admission message. Explore my artwork on social media!</p>
                     <div class="relative cursor-pointer overflow-hidden rounded-lg group view-image-btn" data-image="ku.jpeg" aria-label="View Kenyatta University Admission Letter">
                         <img src="ku.jpeg" alt="Kenyatta University Admission Thumbnail" class="w-full h-48 object-cover object-center transform transition-transform duration-300 group-hover:scale-105 rounded-md">
@@ -206,8 +242,8 @@
                     <div class="mt-4 flex flex-wrap gap-4 justify-center md:justify-start">
                         <a href="https://www.tiktok.com/@intercost04" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-mutedtext hover:text-primary transition-colors group">
                             <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22.5 10.5C22.5 10.9167 22.0625 11.25 21.5 11.25C20.9375 11.25 20.5 10.9167 20.5 10.5V9.5C20.5 7.08333 19.3333 4.91667 17.5 3.5C15.6667 2.08333 13.5 1.25 10.5 1.25H9.5C7.08333 1.25 4.91667 2.08333 3.5 3.5C2.08333 4.91667 1.25 7.08333 1.25 9.5V10.5C1.25 10.9167 1.6875 11.25 2.25 11.25C2.8125 11.25 3.25 10.9167 3.25 10.5V9.5C3.25 7.66667 4.08333 6.08333 5.5 5C6.91667 3.91667 8.5 3.25 10.5 3.25H11.5C14 3.25 16.0833 4.08333 17.5 5.5C18.9167 6.91667 19.75 9 19.75 11.5V12.5C19.75 14.5 19.0833 16.0833 17.75 17.25C16.4167 18.4167 14.75 19 12.5 19V20C12.5 20.4167 12.0625 20.75 11.5 20.75C10.9375 20.75 10.5 20.4167 10.5 20V19C8.5 19 6.91667 18.4167 5.75 17.25C4.58333 16.0833 4 14.5 4 12.5V11.5C4 10.9167 3.5625 10.5833 3 10.5833C2.4375 10.5833 2 10.9167 2 11.5V12.5C2 15 2.91667 17.0833 4.75 18.5C6.58333 19.9167 8.75 20.75 11.5 20.75H12.5C15.5 20.75 17.5833 19.9167 19.25 18.5C20.9167 17.0833 21.75 15 21.75 12.5V11.5C21.75 10.9167 22.1875 10.5 22.75 10.5H22.5Z" />
-                                <path fill-rule="evenodd" d="M11 9H8V22H11V9Z" clip-rule="evenodd" />
+                                <path d="M22.5 10.5C22.5 10.9167 22.0625 11.25 21.5 11.25C20.9375 11.25 20.5 10.9167 20.5 10.5V9.5C20.5 7.08333 19.3333 4.91667 17.5 3.5C15.6667 2.08333 13.5 1.25 10.5 1.25H9.5C7.08333 1.25 4.91667 2.08333 3.5 3.5C2.08333 4.91667 1.25 7.08333 1.25 9.5V10.5C1.25 10.9167 1.6875 11.25 2.25 11.25C2.8125 11.25 3.25 10.9167 3.25 10.5V9.5C3.25 7.66667 4.08333 6.08333 5.5 5C6.91667 3.91667 8.5 3.25 10.5 3.25H11.5C14 3.25 16.0833 4.08333 17.5 5.5C18.9167 6.91667 19.75 9 19.75 11.5V12.5C19.75 14.5 19.0833 16.0833 17.75 17.25C16.4167 18.4167 14.75 19 12.5 19V20C12.5 20.4167 12.0625 20.75 11.5 20.75C10.9375 20.75 10.5 20.4167 10.5 20V19C8.5 19 6.91667 18.4167 5.75 17.25C4.58333 16.0833 4 14.5 4 12.5V11.5C4 10.9167 3.5625 10.5833 3 10.5833C2.4375 10.5833 2 10.9167 2 11.5V12.5C2 15 2.91667 17.0833 4.75 18.5C6.58333 19.9167 8.75 20.75 11.5 20.75H12.5C15.5 20.75 17.5833 19.9167 19.25 18.5C20.9167 17.0833 21.75 15 21.75 12.5V11.5C21.75 10.9167 22.1875 10.5 22.75 10.5H22.5Z"></path>
+                                <path fill-rule="evenodd" d="M11 9H8V22H11V9Z" clip-rule="evenodd"></path>
                             </svg>
                             <span class="text-sm font-medium">TikTok: @intercost04</span>
                         </a>
@@ -226,8 +262,8 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                     <!-- Webster University Card -->
-                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-darksurface dark:border-darksurface light:bg-white light:border-slate-200">
-                        <h3 class="text-xl font-semibold text-primary mb-2">Webster University</h3>
+                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-border dark:border-border light:bg-white light:border-E2E8F0">
+                        <h3 class="text-xl font-semibold text-primary mb-2 font-serif">Webster University</h3>
                         <p class="text-mutedtext mb-4">
                             USA - Computer Science (BS) with emphasis in Machine Learning. Called on July 15th, 2025. Awarded 50% scholarship.
                         </p>
@@ -240,8 +276,8 @@
                     </div>
 
                     <!-- Oakland University Card -->
-                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-darksurface dark:border-darksurface light:bg-white light:border-slate-200">
-                        <h3 class="text-xl font-semibold text-primary mb-2">Oakland University</h3>
+                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-border dark:border-border light:bg-white light:border-E2E8F0">
+                        <h3 class="text-xl font-semibold text-primary mb-2 font-serif">Oakland University</h3>
                         <p class="text-mutedtext mb-4">
                             USA - Computer Science as major. Called on September 15th, 2025.
                         </p>
@@ -254,8 +290,8 @@
                     </div>
 
                     <!-- Park University Card -->
-                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-darksurface dark:border-darksurface light:bg-white light:border-slate-200">
-                        <h3 class="text-xl font-semibold text-primary mb-2">Park University</h3>
+                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-border dark:border-border light:bg-white light:border-E2E8F0">
+                        <h3 class="text-xl font-semibold text-primary mb-2 font-serif">Park University</h3>
                         <p class="text-mutedtext mb-4">
                             USA - Bachelors program of Information and Computer Science. Called on February 13th, 2025.
                         </p>
@@ -268,8 +304,8 @@
                     </div>
 
                     <!-- Cyprus International University Card -->
-                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-darksurface dark:border-darksurface light:bg-white light:border-slate-200">
-                        <h3 class="text-xl font-semibold text-primary mb-2">Cyprus International University</h3>
+                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-border dark:border-border light:bg-white light:border-E2E8F0">
+                        <h3 class="text-xl font-semibold text-primary mb-2 font-serif">Cyprus International University</h3>
                         <p class="text-mutedtext mb-4">
                             Cyprus - Bachelor in Information Technology. Called on July 2nd, 2025. 50% guaranteed international scholarship.
                         </p>
@@ -282,8 +318,8 @@
                     </div>
 
                     <!-- University of Derby Card -->
-                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-darksurface dark:border-darksurface light:bg-white light:border-slate-200">
-                        <h3 class="text-xl font-semibold text-primary mb-2">University of Derby</h3>
+                    <div class="bg-darksurface rounded-lg shadow-md p-6 border border-border dark:border-border light:bg-white light:border-E2E8F0">
+                        <h3 class="text-xl font-semibold text-primary mb-2 font-serif">University of Derby</h3>
                         <p class="text-mutedtext mb-4">
                             United Kingdom - Foundation Pathways Programme. Called on September 29th, 2025.
                         </p>
@@ -300,7 +336,7 @@
                     Receiving admission from institutions across three different countries reflects both academic capability and global competitiveness. Although financial limitations delayed immediate enrollment, these offers stand as strong evidence of my ability to meet international academic standards.
                 </p>
 
-                <h2 class="text-3xl font-bold text-lighttext mt-10 mb-4 text-center md:text-left animate-fade-in-up delay-400">Why This Matters</h2>
+                <h2 class="text-3xl font-bold text-lighttext mt-10 mb-4 text-center md:text-left animate-fade-in-up delay-400 font-serif">Why This Matters</h2>
                 <div class="section-separator mx-auto md:mx-0 !w-40"></div>
                 <ul class="list-disc list-inside text-mutedtext ml-4 space-y-2 animate-fade-in-up delay-600">
                     <li><span class="font-medium text-lighttext">Early academic excellence</span></li>
@@ -315,14 +351,14 @@
             </div>
 
             <div class="text-center mt-12">
-                <a href="achievements.html#achievements-content" class="inline-block bg-primary hover:bg-secondary text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
-                    &larr; Back to Projects & Achievements
+                <a href="achievements.html#achievements-content" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75">
+                    ← Back to Projects & Achievements
                 </a>
             </div>
         </div>
     </main>
 
-    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm">
+    <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm border-t border-border">
         <p>&copy; 2025 Caleb Howard. All rights reserved.</p>
     </footer>
 
@@ -338,7 +374,7 @@
 
     <!-- PDF Lightbox Modal -->
     <div id="pdf-lightbox" class="fixed inset-0 bg-darkbg bg-opacity-90 flex items-center justify-center z-50 p-4 hidden">
-        <div class="relative w-full max-w-5xl h-full max-h-[90vh] mx-auto bg-darksurface rounded-lg shadow-2xl overflow-hidden">
+        <div class="relative w-full max-w-5xl h-full max-h-[90vh] mx-auto bg-darksurface rounded-lg shadow-2xl overflow-hidden border border-border">
             <button id="pdf-lightbox-close-btn" class="absolute -top-10 right-0 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 z-10">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
