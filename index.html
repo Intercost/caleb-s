@@ -458,13 +458,15 @@
                 loaderStatus.classList.add('hidden');
                 tapToContinue.classList.remove('hidden');
                 
-                // Add click/touch handlers
-                tapToContinue.addEventListener('click', startGlitchAndAudio);
-                tapToContinue.addEventListener('touchstart', startGlitchAndAudio);
+                // Safe unified activation handler to prevent double-firing on mobile
+                function handleUserTap(e) {
+                    e.preventDefault(); // Stop mobile double-tap ghost events
+                    startGlitchAndAudio();
+                }
                 
-                // Also allow clicking anywhere else on the loader
+                // Bind to the full screen container so anywhere they tap works cleanly
                 loader.addEventListener('click', startGlitchAndAudio);
-                loader.addEventListener('touchstart', startGlitchAndAudio);
+                loader.addEventListener('touchstart', handleUserTap, { passive: false });
             }
 
             function startGlitchAndAudio() {
