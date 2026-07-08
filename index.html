@@ -39,7 +39,7 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght=400;600;700&family=DM+Sans:wght=300;400;500;600&family=DM+Mono:wght=400;500&display=swap');
 
         html {
             background-color: #0b0f19; /* darkbg */
@@ -82,7 +82,7 @@
             color: #06b6d4 !important; /* Primary color for light mode */
         }
 
-        /* ================= LOADER (3D cube) ================= */
+        /* ================= LOADER (3D cube & Advanced FX) ================= */
         #loader {
             position: fixed;
             inset: 0;
@@ -92,10 +92,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 24px;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            gap: 32px;
+            transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1), visibility 1s;
         }
         html.light #loader { background: #F1F5F9 !important; }
+        
         #loader.loader-hidden {
             opacity: 0;
             visibility: hidden;
@@ -103,24 +104,32 @@
         }
         body.is-loading { overflow: hidden; }
 
+        /* Cube Animations */
         .cube-scene {
             width: 70px;
             height: 70px;
             perspective: 500px;
+            transition: transform 0.5s;
         }
         .cube {
             width: 100%;
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            animation: spinCube 2.4s infinite linear;
+            animation: spinCube 2s infinite linear;
         }
+        
+        /* Bouncing Cube State after 5 seconds */
+        .cube.bounce-crazy {
+            animation: spinCube 0.5s infinite linear, bounceCrazy 0.3s infinite alternate ease-in-out !important;
+        }
+
         .cube-face {
             position: absolute;
             width: 70px;
             height: 70px;
-            border: 1px solid #06b6d4;
-            background: rgba(6, 182, 212, 0.08);
+            border: 2px solid #06b6d4;
+            background: rgba(6, 182, 212, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -128,6 +137,7 @@
             font-weight: 700;
             font-size: 22px;
             color: #06b6d4;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
         }
         .cube-face.front  { transform: translateZ(35px); }
         .cube-face.back   { transform: rotateY(180deg) translateZ(35px); }
@@ -141,16 +151,48 @@
             to   { transform: rotateX(360deg) rotateY(360deg); }
         }
 
-        #loader p {
-            font-family: 'DM Mono', monospace;
-            font-size: 13px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: #94a3b8;
+        @keyframes bounceCrazy {
+            0% { transform: translateY(-40px) scaleY(1.1); }
+            100% { transform: translateY(40px) scaleY(0.8); }
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .cube { animation: none; }
+        /* Glitch Animation for Loader */
+        .glitch-active {
+            animation: glitchEffect 0.15s infinite;
+        }
+
+        @keyframes glitchEffect {
+            0% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
+            20% { transform: translate(-4px, 3px) skew(-3deg); filter: hue-rotate(90deg); }
+            40% { transform: translate(3px, -2px) skew(4deg); }
+            60% { transform: translate(-3px, -3px) skew(-1deg); filter: hue-rotate(180deg); }
+            80% { transform: translate(4px, 2px) skew(2deg); }
+            100% { transform: translate(0) skew(0deg); filter: hue-rotate(360deg); }
+        }
+
+        /* Blackout overlay for the "boom, total darkness" moment */
+        #blackout {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease-out;
+        }
+        #blackout.show {
+            opacity: 1;
+        }
+
+        /* Dynamic Name letter container on Loader */
+        #loader-name-container {
+            font-family: 'DM Mono', monospace;
+            font-size: 16px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #06b6d4;
+            min-height: 24px;
+            text-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
         }
 
         /* ================= Hero entrance animations ================= */
@@ -168,7 +210,7 @@
         .delay-400 { animation-delay: 0.4s; }
 
         @media (prefers-reduced-motion: reduce) {
-            .animate-fade-in-down, .animate-fade-in-up { animation: none; }
+            .animate-fade-in-down, .animate-fade-in-up, .cube { animation: none !important; }
         }
 
         /* ================= Scroll reveal ================= */
@@ -180,9 +222,6 @@
         .reveal.in-view {
             opacity: 1;
             transform: translateY(0);
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .reveal { opacity: 1; transform: none; transition: none; }
         }
 
         /* ================= Cards ================= */
@@ -202,9 +241,6 @@
             background: #ffffff !important;
             border-color: #dbe4f0 !important;
         }
-        html.light .pillar-card:hover {
-            box-shadow: 0 20px 40px -20px rgba(6, 182, 212, 0.25) !important;
-        }
         .pillar-icon {
             width: 52px;
             height: 52px;
@@ -218,10 +254,16 @@
 </head>
 <body class="min-h-screen is-loading">
 
+    <!-- Blackout Overlay for Transitions -->
+    <div id="blackout" aria-hidden="true"></div>
+
+    <!-- Audio Player (Loaded in BG) -->
+    <audio id="portfolio-greeting" src="welcome.mp3" preload="auto"></audio>
+
     <!-- Loader -->
     <div id="loader" aria-hidden="true">
-        <div class="cube-scene">
-            <div class="cube">
+        <div class="cube-scene" id="cube-scene-container">
+            <div class="cube" id="loader-cube">
                 <div class="cube-face front">CH</div>
                 <div class="cube-face back">CH</div>
                 <div class="cube-face right">CH</div>
@@ -230,7 +272,12 @@
                 <div class="cube-face bottom">CH</div>
             </div>
         </div>
-        <p>Loading portfolio</p>
+        <!-- Letter-by-letter target container -->
+        <div id="loader-name-container"></div>
+        <p id="tap-to-continue" class="text-primary font-medium text-sm mt-4 hidden tracking-[0.15em] animate-pulse cursor-pointer">
+            Tap to Continue
+        </p>
+        <p id="loader-status" class="text-mutedtext text-xs tracking-[0.25em]">Initializing Experience</p>
     </div>
 
     <!-- Navigation -->
@@ -266,7 +313,7 @@
             </div>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) -->
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-darksurface shadow-lg py-2 border-b border-border">
             <div class="flex flex-col space-y-2 px-4">
                 <a href="about.html" class="block py-2 px-3 text-lighttext hover:bg-darksurface3 rounded-md transition-colors flex items-center">
@@ -295,16 +342,17 @@
             <div class="max-w-4xl mx-auto">
                 <img src="passport.jpeg" alt="Caleb Howard" class="w-48 h-48 object-cover rounded-full mx-auto mb-8 shadow-xl border-4 border-primary animate-fade-in-down">
                 <p class="text-xl md:text-2xl text-primary font-medium mb-4 animate-fade-in-down delay-200">Hello, I'm</p>
-                <h1 class="text-5xl md:text-7xl font-extrabold text-lighttext leading-tight mb-6 animate-fade-in-up font-serif">Caleb Howard</h1>
-                <p class="text-2xl md:text-3xl font-light text-mutedtext mb-6 animate-fade-in-up delay-200">
-                    A driven <span class="text-primary font-medium">Innovator</span>, <span class="text-primary font-medium">Developer</span>, and <span class="text-primary font-medium">Problem Solver</span>,
-                    I am passionate about leveraging technology to create impactful solutions using AI-driven engines.
+                
+                <!-- Dynamic Highlighting Name Target -->
+                <h1 class="text-5xl md:text-7xl font-extrabold text-lighttext leading-tight mb-6 font-serif tracking-tight" id="hero-title-name">
+                    <!-- Target content will be injected by JavaScript typewriter script -->
+                </h1>
+                
+                <!-- Typewriter Bio Target Paragraph -->
+                <p class="text-xl md:text-2xl font-light text-mutedtext mb-6 min-h-[140px]" id="hero-typewriter-bio">
+                    <!-- Interactive typing target -->
                 </p>
-                <p class="text-base md:text-lg text-mutedtext2 max-w-2xl mx-auto mb-10 animate-fade-in-up delay-200">
-                    Based in Nairobi, Kenya, I build full-stack applications and explore how artificial intelligence
-                    can make software smarter and more useful &mdash; from idea, to prototype, to something people
-                    actually use.
-                </p>
+
                 <a href="achievements.html" class="inline-block bg-gradient-to-r from-secondary to-primary text-lighttext font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 animate-fade-in-up delay-400 hover:opacity-90">
                     View My Achievements
                 </a>
@@ -378,32 +426,172 @@
     <footer class="bg-darksurface p-8 text-center text-mutedtext text-sm border-t border-border">
         <p>&copy; 2026 Caleb Howard. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+
     <script>
-        // Hide loader once page has loaded (min display time so it doesn't just flash)
+        // Main loader sequence with Tap to Continue
         (function() {
+            var audio = document.getElementById('portfolio-greeting');
+            var textTarget = document.getElementById('loader-name-container');
+            var tapToContinue = document.getElementById('tap-to-continue');
+            var loaderStatus = document.getElementById('loader-status');
+            var cube = document.getElementById('loader-cube');
+            var scene = document.getElementById('cube-scene-container');
+            var blackout = document.getElementById('blackout');
             var loader = document.getElementById('loader');
             var body = document.body;
-            var minTime = 900;
-            var start = Date.now();
+            var nameStr = "CALEB HOWARD";
+            var index = 0;
 
-            function hideLoader() {
-                var elapsed = Date.now() - start;
-                var wait = Math.max(minTime - elapsed, 0);
+            // Step 1: Type out the name
+            var nameInterval = setInterval(function() {
+                if (index < nameStr.length) {
+                    textTarget.textContent += nameStr[index];
+                    index++;
+                } else {
+                    clearInterval(nameInterval);
+                    // Name is fully typed - show tap to continue
+                    showTapToContinue();
+                }
+            }, 300);
+
+            function showTapToContinue() {
+                loaderStatus.classList.add('hidden');
+                tapToContinue.classList.remove('hidden');
+                
+                // Add click/touch handlers
+                tapToContinue.addEventListener('click', startGlitchAndAudio);
+                tapToContinue.addEventListener('touchstart', startGlitchAndAudio);
+                
+                // Also allow clicking anywhere else on the loader
+                loader.addEventListener('click', startGlitchAndAudio);
+                loader.addEventListener('touchstart', startGlitchAndAudio);
+            }
+
+            function startGlitchAndAudio() {
+                // Remove listeners
+                tapToContinue.removeEventListener('click', startGlitchAndAudio);
+                tapToContinue.removeEventListener('touchstart', startGlitchAndAudio);
+                loader.removeEventListener('click', startGlitchAndAudio);
+                loader.removeEventListener('touchstart', startGlitchAndAudio);
+                
+                // Hide tap to continue
+                tapToContinue.classList.add('hidden');
+                
+                // Play audio
+                if (audio) {
+                    audio.play().catch(function(err) {
+                        console.log("Audio play error:", err);
+                    });
+                }
+                
+                // Start glitch sequence
+                cube.classList.add('bounce-crazy');
+                scene.classList.add('glitch-active');
+                textTarget.classList.add('glitch-active');
+                
+                // Continue with blackout and loader exit
+                setTimeout(function() {
+                    blackout.classList.add('show');
+                }, 1800);
+                
                 setTimeout(function() {
                     loader.classList.add('loader-hidden');
                     body.classList.remove('is-loading');
-                }, wait);
+                    
+                    setTimeout(function() {
+                        blackout.classList.remove('show');
+                        startHeroTypingSequence();
+                    }, 300);
+                }, 2000);
             }
 
-            if (document.readyState === 'complete') {
-                hideLoader();
-            } else {
-                window.addEventListener('load', hideLoader);
-            }
+            // Initialize everything when DOM loads
+            window.addEventListener('DOMContentLoaded', function() {
+                // Just start the sequence - audio will wait for user tap
+            });
         })();
 
-        // Scroll reveal for cards & sections
+        // Hero Typewriter & Highlighting Animation Logic
+        function startHeroTypingSequence() {
+            // Set up characters for character highlight loop
+            var nameHeader = document.getElementById('hero-title-name');
+            var originalName = "Caleb Howard";
+            nameHeader.innerHTML = "";
+            
+            for (var i = 0; i < originalName.length; i++) {
+                var charSpan = document.createElement('span');
+                charSpan.textContent = originalName[i];
+                charSpan.className = 'transition-all duration-150 inline-block text-lighttext';
+                nameHeader.appendChild(charSpan);
+            }
+            
+            var nameSpans = nameHeader.querySelectorAll('span');
+            
+            function runColorHighlightCycle() {
+                var letterIdx = 0;
+                var colorInterval = setInterval(function() {
+                    nameSpans.forEach(function(s) { 
+                        s.className = 'text-lighttext transition-all duration-150 inline-block'; 
+                    });
+                    
+                    if (letterIdx < nameSpans.length) {
+                        nameSpans[letterIdx].className = 'text-primary transition-all duration-150 inline-block scale-110 drop-shadow-[0_0_8px_#06b6d4]';
+                        letterIdx++;
+                    } else {
+                        clearInterval(colorInterval);
+                        runBlinkSequence(3, function() {
+                            setTimeout(runColorHighlightCycle, 1500);
+                        });
+                    }
+                }, 150);
+            }
+
+            function runBlinkSequence(count, callback) {
+                var isLit = false;
+                var blinkCount = 0;
+                var maxBlinks = count * 2;
+                
+                var blinkInterval = setInterval(function() {
+                    if (blinkCount < maxBlinks) {
+                        nameSpans.forEach(function(s) {
+                            if (isLit) {
+                                s.className = 'text-lighttext transition-all duration-100 inline-block';
+                            } else {
+                                s.className = 'text-primary transition-all duration-100 inline-block drop-shadow-[0_0_8px_#06b6d4]';
+                            }
+                        });
+                        isLit = !isLit;
+                        blinkCount++;
+                    } else {
+                        clearInterval(blinkInterval);
+                        nameSpans.forEach(function(s) { 
+                            s.className = 'text-lighttext transition-all duration-150 inline-block'; 
+                        });
+                        callback();
+                    }
+                }, 180);
+            }
+
+            runColorHighlightCycle();
+
+            // Typewriter Bio Sequence
+            var bioTarget = document.getElementById('hero-typewriter-bio');
+            var fullBioText = "A driven Innovator, Developer, and Problem Solver, I am passionate about leveraging technology to create impactful solutions using AI-driven engines. Based in Nairobi, Kenya, I build full-stack applications and explore how artificial intelligence can make software smarter and more useful — from idea, to prototype, to something people actually use.";
+            
+            bioTarget.innerHTML = "";
+            var bioCharIdx = 0;
+            
+            function typeBio() {
+                if (bioCharIdx < fullBioText.length) {
+                    bioTarget.innerHTML += fullBioText[bioCharIdx];
+                    bioCharIdx++;
+                    setTimeout(typeBio, 12);
+                }
+            }
+            typeBio();
+        }
+
+        // Scroll reveal logic for cards
         (function() {
             var items = document.querySelectorAll('.reveal');
             if (!('IntersectionObserver' in window)) {
