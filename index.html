@@ -554,7 +554,8 @@
             
             for (var i = 0; i < originalName.length; i++) {
                 var charSpan = document.createElement('span');
-                charSpan.textContent = originalName[i];
+                // If it's a blank space, use a non-breaking space code ( ) so the browser doesn't collapse it
+                charSpan.textContent = originalName[i] === " " ? "\u00A0" : originalName[i];
                 charSpan.className = 'transition-all duration-150 inline-block text-lighttext';
                 nameHeader.appendChild(charSpan);
             }
@@ -641,6 +642,61 @@
                 });
             }, { threshold: 0.15 });
             items.forEach(function(el) { observer.observe(el); });
+        })();
+
+        // ================= MOBILE NAVIGATION LOGIC =================
+        (function() {
+            var menuButton = document.getElementById('mobile-menu-button');
+            var mobileMenu = document.getElementById('mobile-menu');
+            var hamburgerIcon = document.getElementById('hamburger-icon');
+            var closeIcon = document.getElementById('close-icon');
+
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', function() {
+                    var isHidden = mobileMenu.classList.contains('hidden');
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        hamburgerIcon.classList.add('hidden');
+                        closeIcon.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        hamburgerIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                    }
+                });
+            }
+        })();
+
+        // ================= DARK / LIGHT THEME TOGGLE LOGIC =================
+        (function() {
+            var themeToggleBtn = document.getElementById('theme-toggle');
+            var htmlElement = document.getElementById('htmlElement');
+            var darkModeSvg = document.getElementById('dark-mode-svg');
+            var lightModeSvg = document.getElementById('light-mode-svg');
+
+            // Check for saved user preference, otherwise default to dark mode
+            var currentTheme = localStorage.getItem('theme') || 'dark';
+            if (currentTheme === 'light') {
+                htmlElement.classList.add('light');
+                if (darkModeSvg) darkModeSvg.classList.add('hidden');
+                if (lightModeSvg) lightModeSvg.classList.remove('hidden');
+            }
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function() {
+                    if (htmlElement.classList.contains('light')) {
+                        htmlElement.classList.remove('light');
+                        darkModeSvg.classList.remove('hidden');
+                        lightModeSvg.classList.add('hidden');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        htmlElement.classList.add('light');
+                        darkModeSvg.classList.add('hidden');
+                        lightModeSvg.classList.remove('hidden');
+                        localStorage.setItem('theme', 'light');
+                    }
+                });
+            }
         })();
     </script>
 </body>
