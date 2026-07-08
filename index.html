@@ -4,7 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caleb Howard | Portfolio</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="logo.png" type="image/png">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://caleb-s.vercel.app/">
+    <meta property="og:title" content="Caleb Howard | Software Developer & Innovator">
+    <meta property="og:description" content="Explore my digital portfolio, full-stack applications, and technical innovations based in Nairobi, Kenya.">
+    <meta property="og:image" content="https://caleb-s.vercel.app/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://caleb-s.vercel.app/">
+    <meta name="twitter:title" content="Caleb Howard | Software Developer & Innovator">
+    <meta name="twitter:description" content="Explore my digital portfolio, full-stack applications, and technical innovations based in Nairobi, Kenya.">
+    <meta name="twitter:image" content="https://caleb-s.vercel.app/logo.png">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -344,7 +358,7 @@
                 <p class="text-xl md:text-2xl text-primary font-medium mb-4 animate-fade-in-down delay-200">Hello, I'm</p>
                 
                 <!-- Dynamic Highlighting Name Target -->
-                <h1 class="text-5xl md:text-7xl font-extrabold text-lighttext leading-tight mb-6 font-serif tracking-tight" id="hero-title-name">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-lighttext leading-tight mb-6 font-serif tracking-normal whitespace-pre-wrap" id="hero-title-name">
                     <!-- Target content will be injected by JavaScript typewriter script -->
                 </h1>
                 
@@ -458,15 +472,33 @@
                 loaderStatus.classList.add('hidden');
                 tapToContinue.classList.remove('hidden');
                 
-                // Safe unified activation handler to prevent double-firing on mobile
-                function handleUserTap(e) {
-                    e.preventDefault(); // Stop mobile double-tap ghost events
+                function handleAndroidActivation(e) {
+                    if (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                    
+                    // Force Android Chrome's HTML5 media thread to wake up and fetch the file
+                    if (audio) {
+                        audio.load();
+                        // Pre-trigger an instant low-level context unlock token
+                        var promise = audio.play();
+                        if (promise !== undefined) {
+                            promise.then(function() {
+                                // Context successfully initialized
+                            }).catch(function(err) {
+                                console.log("Engine initialization gesture registered:", err);
+                            });
+                        }
+                    }
+                    
+                    // Proceed seamlessly into your glitch animations
                     startGlitchAndAudio();
                 }
                 
-                // Bind to the full screen container so anywhere they tap works cleanly
-                loader.addEventListener('click', startGlitchAndAudio);
-                loader.addEventListener('touchstart', handleUserTap, { passive: false });
+                // Bind the unified activation pipeline for Android Chrome
+                loader.addEventListener('click', handleAndroidActivation);
+                loader.addEventListener('touchstart', handleAndroidActivation, { passive: false });
             }
 
             function startGlitchAndAudio() {
