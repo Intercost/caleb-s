@@ -227,6 +227,31 @@
             .animate-fade-in-down, .animate-fade-in-up, .cube { animation: none !important; }
         }
 
+        /* ================= Glass hero (new design) ================= */
+        @keyframes heroFadeSlideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroMarquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        .hero-fade { animation: heroFadeSlideIn 0.8s ease-out forwards; opacity: 0; }
+        /* Hold the entrance animation until the loader has finished */
+        body.is-loading .hero-fade { animation-play-state: paused; }
+        .hero-marquee { animation: heroMarquee 40s linear infinite; }
+        .hd-100 { animation-delay: 0.1s; }
+        .hd-200 { animation-delay: 0.2s; }
+        .hd-300 { animation-delay: 0.3s; }
+        .hd-400 { animation-delay: 0.4s; }
+        .hd-500 { animation-delay: 0.5s; }
+        .brand-logo { filter: brightness(0) invert(1); transition: filter 0.3s ease; }
+        .brand-item:hover .brand-logo { filter: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-fade { animation: none !important; opacity: 1 !important; }
+            .hero-marquee { animation: none !important; }
+        }
+
         /* ================= Scroll reveal ================= */
         .reveal {
             opacity: 0;
@@ -351,25 +376,153 @@
     </nav>
 
     <main class="pt-16">
-        <!-- Hero Section -->
-        <section id="hero" class="hero-bg flex items-center justify-center min-h-screen text-center px-4 py-16">
-            <div class="max-w-4xl mx-auto">
-                <img src="passport.jpeg" alt="Caleb Howard" class="w-48 h-48 object-cover rounded-full mx-auto mb-8 shadow-xl border-4 border-primary animate-fade-in-down">
-                <p class="text-xl md:text-2xl text-primary font-medium mb-4 animate-fade-in-down delay-200">Hello, I'm</p>
-                
-                <!-- Dynamic Highlighting Name Target -->
-                <h1 class="text-3xl sm:text-5xl md:text-7xl font-extrabold text-lighttext leading-tight mb-6 font-serif tracking-normal whitespace-nowrap" id="hero-title-name">
-                    <!-- Target content will be injected by JavaScript typewriter script -->
-                </h1>
-                
-                <!-- Typewriter Bio Target Paragraph -->
-                <p class="text-xl md:text-2xl font-light text-mutedtext mb-6 min-h-[140px]" id="hero-typewriter-bio">
-                    <!-- Interactive typing target -->
-                </p>
+        <!-- Hero Section (glassmorphism design) -->
+        <section id="hero" class="relative flex min-h-[calc(100vh-4rem)] w-full items-center overflow-hidden bg-zinc-950 text-white">
+            <!-- Background glow with gradient mask -->
+            <div class="absolute inset-0 z-0 opacity-70" style="background: radial-gradient(60% 50% at 18% 15%, rgba(6,182,212,0.28), transparent 70%), radial-gradient(50% 50% at 88% 30%, rgba(59,130,246,0.24), transparent 70%), radial-gradient(70% 60% at 50% 100%, rgba(139,92,246,0.16), transparent 70%); -webkit-mask-image: linear-gradient(180deg, black 0%, black 70%, transparent 100%); mask-image: linear-gradient(180deg, black 0%, black 70%, transparent 100%);"></div>
 
-                <a href="achievements.html" class="inline-block bg-gradient-to-r from-secondary to-primary text-lighttext font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 animate-fade-in-up delay-400 hover:opacity-90">
-                    View My Achievements
-                </a>
+            <div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+                <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-8">
+
+                    <!-- LEFT COLUMN -->
+                    <div class="flex flex-col justify-center space-y-8 lg:col-span-7">
+
+                        <!-- Badge -->
+                        <div class="hero-fade hd-100">
+                            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-md transition-colors hover:bg-white/10">
+                                <span class="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-300 sm:text-xs">
+                                    Full-Stack &amp; AI Developer
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Heading -->
+                        <h1 class="hero-fade hd-200 text-5xl font-medium leading-[0.95] tracking-tighter sm:text-6xl xl:text-7xl">Hello, I'm<br>
+                
+                        <!-- Dynamic Highlighting Name Target (letters are injected by the typewriter script) -->
+                        <span id="hero-title-name" class="inline-block text-white">Caleb Howard</span><br>
+                        <span class="bg-gradient-to-br from-white via-white to-primary bg-clip-text text-transparent">Software Developer</span>
+                        </h1>
+                
+                        <!-- Typewriter Bio Target Paragraph -->
+                        <p class="hero-fade hd-300 min-h-[11rem] max-w-xl text-lg leading-relaxed text-zinc-400" id="hero-typewriter-bio"></p>
+
+                        <!-- CTA Buttons -->
+                        <div class="hero-fade hd-400 flex flex-col gap-4 sm:flex-row">
+                            <a href="achievements.html" class="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-zinc-950 transition-all hover:scale-[1.02] hover:bg-zinc-200 active:scale-[0.98]">
+                                View My Achievements
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            </a>
+                            <a href="sova.html" class="group inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/10">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                                Meet Sova
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div class="space-y-6 lg:col-span-5 lg:mt-12">
+
+                        <!-- Profile / Stats Card -->
+                        <div class="hero-fade hd-500 relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur-xl">
+                            <div class="pointer-events-none absolute right-0 top-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-white/5 blur-3xl"></div>
+
+                            <div class="relative z-10">
+                                <div class="mb-8 flex items-center gap-4">
+                                    <img src="passport.jpeg" alt="Caleb Howard" class="h-14 w-14 rounded-2xl object-cover ring-1 ring-white/20">
+                                    <div>
+                                        <div class="text-3xl font-bold tracking-tight text-white">2</div>
+                                        <div class="text-sm text-zinc-400">Flagship AI Systems (Sova &amp; Chimera)</div>
+                                    </div>
+                                </div>
+
+                                <!-- Progress Bar Section -->
+                                <div class="mb-8 space-y-3">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-zinc-400">KCPE Score</span>
+                                        <span class="font-medium text-white">395/500</span>
+                                    </div>
+                                    <div class="h-2 w-full overflow-hidden rounded-full bg-zinc-800/50">
+                                        <div class="h-full w-[79%] rounded-full bg-gradient-to-r from-white to-zinc-400"></div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-6 h-px w-full bg-white/10"></div>
+
+                                <!-- Mini Stats -->
+                                <div class="flex items-stretch justify-between text-center">
+                                    <div class="flex flex-1 cursor-default flex-col items-center justify-center transition-transform hover:-translate-y-1">
+                                        <span class="text-xl font-bold text-white sm:text-2xl">Python</span>
+                                        <span class="text-[10px] font-medium uppercase tracking-wider text-zinc-500 sm:text-xs">Language</span>
+                                    </div>
+                                    <div class="w-px bg-white/10"></div>
+                                    <div class="flex flex-1 cursor-default flex-col items-center justify-center transition-transform hover:-translate-y-1">
+                                        <span class="text-xl font-bold text-white sm:text-2xl">Flask</span>
+                                        <span class="text-[10px] font-medium uppercase tracking-wider text-zinc-500 sm:text-xs">Backend</span>
+                                    </div>
+                                    <div class="w-px bg-white/10"></div>
+                                    <div class="flex flex-1 cursor-default flex-col items-center justify-center transition-transform hover:-translate-y-1">
+                                        <span class="text-xl font-bold text-white sm:text-2xl">Gemini</span>
+                                        <span class="text-[10px] font-medium uppercase tracking-wider text-zinc-500 sm:text-xs">AI Engine</span>
+                                    </div>
+                                </div>
+
+                                <!-- Tag Pills -->
+                                <div class="mt-8 flex flex-wrap gap-2">
+                                    <div class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium tracking-wide text-zinc-300">
+                                        <span class="relative flex h-2 w-2">
+                                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                                            <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+                                        </span>
+                                        NAIROBI, KENYA
+                                    </div>
+                                    <div class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium tracking-wide text-zinc-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"></path><path d="M5 21h14"></path></svg>
+                                        STAREHE ALUMNUS
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Marquee Card -->
+                        <div class="hero-fade hd-500 relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 py-8 backdrop-blur-xl">
+                            <h3 class="mb-6 px-8 text-sm font-medium text-zinc-400">Tech I Build With</h3>
+
+                            <div class="relative flex overflow-hidden" style="-webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent); mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);">
+                                <div class="hero-marquee flex whitespace-nowrap">
+                                    <!-- Group 1 -->
+                                    <div class="flex shrink-0 gap-12 pr-12">
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Python</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">JavaScript</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">HTML5</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">CSS3</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Tailwind CSS</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Django</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">TensorFlow</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Git</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Linux</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Docker</span></div>
+                                    </div>
+                                    <!-- Group 2 (duplicate for a seamless loop) -->
+                                    <div class="flex shrink-0 gap-12 pr-12" aria-hidden="true">
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Python</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">JavaScript</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">HTML5</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">CSS3</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Tailwind CSS</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Django</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">TensorFlow</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Git</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Linux</span></div>
+                                        <div class="brand-item flex cursor-default items-center gap-2 opacity-60 transition-all hover:scale-105 hover:opacity-100"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="" class="brand-logo h-6 w-6"><span class="text-lg font-bold tracking-tight text-white">Docker</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </section>
 
