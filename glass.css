@@ -189,6 +189,33 @@ html.light .bg-gradient-to-r.from-secondary.to-primary:not(.sound-wave-container
 html.light #narration-modal > div { background: rgba(255, 255, 255, 0.97) !important; }
 html.light .fixed.bg-darkbg { background: rgba(244, 244, 245, 0.85) !important; }
 
+/* ---------- Project cards: independent height + full images ---------- */
+/* Cards in the same row no longer stretch to match the tallest one,
+   so collapsing one card never leaves an empty tall box behind. */
+.project-card { align-self: start; }
+.project-toggle { gap: 1rem; }
+.project-toggle .toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    line-height: 1;
+    font-size: 1.25rem;
+}
+.project-details img {
+    width: 100%;
+    height: auto !important;
+    max-height: 18rem;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 1rem !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .animate-pulse { animation: none !important; }
 }

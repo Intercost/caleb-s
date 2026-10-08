@@ -391,6 +391,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const toggleIcon = card.querySelector('.toggle-icon');
 
             if (toggleButton && details && toggleIcon) {
+                // Cards start open; each card toggles on its own
+                details.classList.remove('hidden');
+                toggleButton.setAttribute('aria-expanded', 'true');
+                toggleIcon.textContent = '-';
                 toggleButton.addEventListener('click', () => {
                     const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
                     toggleButton.setAttribute('aria-expanded', !isExpanded);
