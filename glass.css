@@ -1,0 +1,192 @@
+/**
+ * glass.css
+ * Shared "glassmorphism" theme. Loaded AFTER each page's inline <style>,
+ * so it restyles the existing Tailwind classes into the same look as the
+ * homepage hero (dark zinc canvas, soft glows, frosted cards, pill buttons).
+ */
+
+/* ---------- Canvas ---------- */
+html { background-color: #09090b; }
+body { background: transparent !important; color: #e8edf5; }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(60% 50% at 18% 8%, rgba(6, 182, 212, 0.20), transparent 70%),
+        radial-gradient(50% 45% at 90% 25%, rgba(59, 130, 246, 0.17), transparent 70%),
+        radial-gradient(70% 55% at 50% 100%, rgba(139, 92, 246, 0.12), transparent 70%);
+}
+
+/* ---------- Typography ---------- */
+.font-serif {
+    font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif !important;
+    letter-spacing: -0.02em;
+}
+h1.font-serif, h2.font-serif {
+    font-weight: 600 !important;
+    letter-spacing: -0.035em;
+}
+.text-mutedtext { color: #a1a1aa; }
+
+/* Gradient page titles (white to cyan) */
+h1.text-primary {
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 55%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+h1.text-primary .ic { color: #06b6d4; }
+
+.section-separator {
+    background: linear-gradient(90deg, #ffffff, #06b6d4) !important;
+}
+
+/* ---------- Icons ---------- */
+.ic {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    vertical-align: -0.17em;
+    flex: none;
+}
+.ic svg { display: block; width: 100%; height: 100%; }
+li > .ic:first-child { color: #06b6d4; margin-right: 0.35rem; }
+h3 > .ic:first-child { color: #06b6d4; margin-right: 0.25rem; }
+
+/* ---------- Navigation ---------- */
+nav.bg-darksurface {
+    background: rgba(9, 9, 11, 0.6) !important;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+    box-shadow: none !important;
+}
+#mobile-menu {
+    background: rgba(9, 9, 11, 0.96) !important;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border-radius: 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+/* ---------- Page sections become transparent so the glow shows ---------- */
+main.bg-darkbg,
+main[class*="bg-darkbg"],
+section.bg-darkbg,
+section.bg-darksurface,
+section.bg-darksurface2 {
+    background: transparent !important;
+}
+section.bg-darksurface { border-color: rgba(255, 255, 255, 0.08) !important; }
+
+/* ---------- Frosted cards ---------- */
+div.bg-darksurface:not(.fixed),
+div.bg-darkbg:not(.fixed),
+table.bg-darkbg,
+.pillar-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.10) !important;
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45) !important;
+}
+div.bg-darksurface.rounded-lg,
+div.bg-darkbg.rounded-lg,
+table.bg-darkbg.rounded-lg,
+.pillar-card {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 1.5rem !important;
+}
+div.bg-darksurface.rounded-lg:hover,
+.pillar-card:hover { background: rgba(255, 255, 255, 0.07) !important; }
+.hover\:border-primary:hover { border-color: rgba(6, 182, 212, 0.65) !important; }
+
+/* Mobile menu items and other nested helper surfaces stay flat */
+#mobile-menu div.bg-darksurface { background: transparent !important; box-shadow: none !important; backdrop-filter: none; border: 0 !important; }
+
+/* ---------- Footer ---------- */
+footer.bg-darksurface {
+    background: rgba(255, 255, 255, 0.03) !important;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+/* ---------- Pill buttons (gradient buttons become white pills) ---------- */
+.bg-gradient-to-r.from-secondary.to-primary:not(.sound-wave-container) {
+    background: #ffffff !important;
+    color: #09090b !important;
+    border-radius: 9999px !important;
+    box-shadow: none !important;
+}
+.bg-gradient-to-r.from-secondary.to-primary:not(.sound-wave-container):hover {
+    background: #e4e4e7 !important;
+}
+.bg-gradient-to-r.from-secondary.to-primary:not(.sound-wave-container) .ic { color: inherit; }
+
+/* Outline buttons used on the achievements page */
+a.border-2.border-primary { border-radius: 9999px !important; }
+
+/* ---------- Overlays and modals ---------- */
+.fixed.bg-darkbg {
+    background: rgba(0, 0, 0, 0.78) !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: none !important;
+}
+#narration-modal > div { background: rgba(15, 15, 18, 0.94) !important; }
+#narration-modal .sound-wave-container {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.85), rgba(6, 182, 212, 0.85)) !important;
+}
+
+/* ---------- Light theme ---------- */
+html.light { background-color: #f4f4f5; }
+html.light body { color: #09090b; }
+html.light body::before {
+    background:
+        radial-gradient(60% 50% at 18% 8%, rgba(6, 182, 212, 0.16), transparent 70%),
+        radial-gradient(50% 45% at 90% 25%, rgba(59, 130, 246, 0.12), transparent 70%),
+        radial-gradient(70% 55% at 50% 100%, rgba(139, 92, 246, 0.08), transparent 70%);
+}
+html.light .text-mutedtext { color: #52525b; }
+html.light .text-lighttext { color: #09090b; }
+html.light nav.bg-darksurface {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+html.light #mobile-menu { background: rgba(255, 255, 255, 0.97) !important; border-bottom-color: rgba(0, 0, 0, 0.08) !important; }
+html.light div.bg-darksurface:not(.fixed),
+html.light div.bg-darkbg:not(.fixed),
+html.light table.bg-darkbg,
+html.light .pillar-card {
+    background: rgba(255, 255, 255, 0.72) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 20px 40px -20px rgba(15, 23, 42, 0.18) !important;
+}
+html.light #mobile-menu div.bg-darksurface { background: transparent !important; box-shadow: none !important; }
+html.light footer.bg-darksurface {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+html.light h1.text-primary {
+    background: linear-gradient(135deg, #09090b 0%, #09090b 55%, #0891b2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+html.light .bg-gradient-to-r.from-secondary.to-primary:not(.sound-wave-container) {
+    background: #09090b !important;
+    color: #ffffff !important;
+}
+html.light .bg-gradient-to-r.from-secondary.to-primary:not(.sound-wave-container):hover { background: #27272a !important; }
+html.light #narration-modal > div { background: rgba(255, 255, 255, 0.97) !important; }
+html.light .fixed.bg-darkbg { background: rgba(244, 244, 245, 0.85) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-pulse { animation: none !important; }
+}

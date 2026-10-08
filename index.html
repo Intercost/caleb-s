@@ -290,6 +290,8 @@
             margin-bottom: 20px;
         }
     </style>
+    <link rel="stylesheet" href="glass.css">
+    <script src="icons.js" defer></script>
 </head>
 <body class="min-h-screen is-loading">
 
@@ -430,7 +432,10 @@
 
                             <div class="relative z-10">
                                 <div class="mb-8 flex items-center gap-4">
-                                    <img src="passport.jpeg" alt="Caleb Howard" class="h-14 w-14 rounded-2xl object-cover ring-1 ring-white/20">
+                                    <button type="button" id="avatar-open" class="group relative shrink-0 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400" aria-label="View profile photo larger">
+                                        <img src="passport.jpeg" alt="Caleb Howard" class="h-14 w-14 rounded-2xl object-cover ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105">
+                                        <span class="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-white text-zinc-950 shadow"><i data-icon="expand" class="ic" style="width:0.7rem;height:0.7rem"></i></span>
+                                    </button>
                                     <div>
                                         <div class="text-3xl font-bold tracking-tight text-white">2</div>
                                         <div class="text-sm text-zinc-400">Flagship AI Systems (Sova &amp; Chimera)</div>
@@ -850,6 +855,46 @@
                     }
                 });
             }
+        })();
+    </script>
+    <!-- Profile photo lightbox -->
+    <style>
+        @keyframes avatarZoomIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+        #avatar-lightbox.is-open #avatar-lightbox-panel { animation: avatarZoomIn 0.28s ease-out both; }
+        @media (prefers-reduced-motion: reduce) { #avatar-lightbox.is-open #avatar-lightbox-panel { animation: none; } }
+    </style>
+    <div id="avatar-lightbox" class="fixed inset-0 z-[120] hidden items-center justify-center bg-black/80 p-4 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Profile photo">
+        <div id="avatar-lightbox-panel" class="relative">
+            <button type="button" id="avatar-close" class="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400" aria-label="Close photo">
+                <i data-icon="x" class="ic"></i>
+            </button>
+            <img src="passport.jpeg" alt="Caleb Howard" class="max-h-[85vh] max-w-[92vw] rounded-3xl object-contain shadow-2xl ring-1 ring-white/20">
+        </div>
+    </div>
+    <script>
+        (function () {
+            var box = document.getElementById('avatar-lightbox');
+            var openBtn = document.getElementById('avatar-open');
+            var closeBtn = document.getElementById('avatar-close');
+            if (!box || !openBtn) return;
+            function open() {
+                box.classList.remove('hidden');
+                box.classList.add('flex', 'is-open');
+                document.body.style.overflow = 'hidden';
+                closeBtn.focus();
+            }
+            function close() {
+                box.classList.add('hidden');
+                box.classList.remove('flex', 'is-open');
+                document.body.style.overflow = '';
+                openBtn.focus();
+            }
+            openBtn.addEventListener('click', open);
+            closeBtn.addEventListener('click', close);
+            box.addEventListener('click', function (e) { if (e.target === box) close(); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && !box.classList.contains('hidden')) close();
+            });
         })();
     </script>
 </body>

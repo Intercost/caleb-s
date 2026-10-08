@@ -190,6 +190,8 @@
             background: #3b82f6;
         }
     </style>
+    <link rel="stylesheet" href="glass.css">
+    <script src="icons.js" defer></script>
 </head>
 <body class="min-h-screen">
     <!-- Navigation -->
@@ -252,7 +254,7 @@
         <section class="py-20 md:py-24 px-4">
             <div class="container mx-auto max-w-4xl">
                 <h1 class="text-5xl font-extrabold text-primary mb-6 animate-fade-in-down font-serif">
-                    <span class="inline-block animate-pulse mr-2">🤖</span> Sova: Autonomous AI Desktop Operating Assistant
+                    <span class="inline-block animate-pulse mr-2"><i data-icon="bot" class="ic"></i></span> Sova: Autonomous AI Desktop Operating Assistant
                 </h1>
                 <p class="text-xl text-mutedtext mb-8 animate-fade-in-up delay-200">
                     Sova is an autonomous AI desktop assistant I engineered to act as an intelligent control layer over a computer system. It combines LLM reasoning with tool execution, persistent memory, emotional modeling, project architecture generation, codebase modification, real-time streaming, task scheduling, and proactive automation. Sova can manage files, run applications, modify software projects, spawn agents, and learn from past tasks, making it an AI-powered operating assistant rather than a traditional chatbot.
@@ -262,22 +264,22 @@
                 <div class="mb-4 text-center md:text-left">
                     <p class="text-mutedtext mb-4">Click this button to listen to Sova's birth narrative:</p>
                     <button id="open-narration-modal" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 animate-fade-in-up delay-400">
-                        <span class="mr-2">🎙️</span> Narrate
+                        <span class="mr-2"><i data-icon="mic" class="ic"></i></span> Narrate
                     </button>
                 </div>
 
                 <!-- New: View Sova's Gallery Button -->
                 <div class="mb-12 text-center md:text-left">
                     <a href="sova_g.html" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 animate-fade-in-up delay-600">
-                        <span class="mr-2">📷</span> View Sova's Gallery
+                        <span class="mr-2"><i data-icon="camera" class="ic"></i></span> View Sova's Gallery
                     </a>
                 </div>
 
-                <a href="achievements.html#projects-content" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 mb-12">← Back to Projects & Achievements</a>
+                <a href="achievements.html#projects-content" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 mb-12"><i data-icon="arrow-left" class="ic"></i> Back to Projects & Achievements</a>
 
                 <div class="space-y-12">
                     <div class="bg-darksurface p-6 rounded-lg shadow-xl border border-border hover:border-primary transition-all duration-300">
-                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">🧠 Core Intelligence Layer</h3>
+                        <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif"><i data-icon="cpu" class="ic"></i> Core Intelligence Layer</h3>
                         <p class="text-mutedtext mb-4">At the center of Sova is a custom AI orchestration engine (SovaCore) that:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
                             <li>Manages conversation state</li>
@@ -294,14 +296,14 @@
                         <p class="text-mutedtext mb-4">Sova can call structured system tools instead of just generating text.</p>
                         <p class="text-mutedtext mb-4">She can:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
-                            <li>🖱 Move the mouse</li>
-                            <li>⌨ Type</li>
-                            <li>📂 Read and write files</li>
-                            <li>🧠 Organize data</li>
-                            <li>🖥 Interact with applications</li>
-                            <li>🔊 Adjust hardware (volume, brightness)</li>
-                            <li>💻 Run Python scripts</li>
-                            <li>🖱 Control mouse and keyboard input</li>
+                            <li><i data-icon="pointer" class="ic"></i> Move the mouse</li>
+                            <li><i data-icon="keyboard" class="ic"></i> Type</li>
+                            <li><i data-icon="folder" class="ic"></i> Read and write files</li>
+                            <li><i data-icon="cpu" class="ic"></i> Organize data</li>
+                            <li><i data-icon="monitor" class="ic"></i> Interact with applications</li>
+                            <li><i data-icon="volume" class="ic"></i> Adjust hardware (volume, brightness)</li>
+                            <li><i data-icon="terminal" class="ic"></i> Run Python scripts</li>
+                            <li><i data-icon="pointer" class="ic"></i> Control mouse and keyboard input</li>
                         </ul>
                         <p class="text-mutedtext mt-4">This turns AI reasoning into real-world system control.</p>
                     </div>
@@ -344,10 +346,10 @@
                         </ul>
                         <p class="text-mutedtext mt-4">She includes a learning engine that:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
-                            <li>📘 Logs experiences</li>
-                            <li>🧠 Reflects on failures</li>
-                            <li>🔁 Attempts self-correction</li>
-                            <li>📈 Improves future task handling</li>
+                            <li><i data-icon="book" class="ic"></i> Logs experiences</li>
+                            <li><i data-icon="cpu" class="ic"></i> Reflects on failures</li>
+                            <li><i data-icon="refresh" class="ic"></i> Attempts self-correction</li>
+                            <li><i data-icon="trend-up" class="ic"></i> Improves future task handling</li>
                         </ul>
                         <p class="text-mutedtext mt-4">She gets smarter over time.</p>
                     </div>
@@ -367,9 +369,9 @@
                         <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">6. Real-Time Streaming AI Responses</h3>
                         <p class="text-mutedtext mb-4">Sova streams responses in real-time using a high-speed streaming system, enabling:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
-                            <li>⚡ Low-latency conversation</li>
-                            <li>🔄 Continuous output flow</li>
-                            <li>🎧 Voice output integration</li>
+                            <li><i data-icon="zap" class="ic"></i> Low-latency conversation</li>
+                            <li><i data-icon="refresh" class="ic"></i> Continuous output flow</li>
+                            <li><i data-icon="headphones" class="ic"></i> Voice output integration</li>
                         </ul>
                     </div>
 
@@ -378,10 +380,10 @@
                         <p class="text-mutedtext mb-4">Sova does not only react, she can act proactively.</p>
                         <p class="text-mutedtext mb-4">She can:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
-                            <li>📌 Monitor system conditions</li>
-                            <li>📌 Apply rules</li>
-                            <li>📌 Trigger automated actions</li>
-                            <li>📌 Suggest optimizations</li>
+                            <li><i data-icon="pin" class="ic"></i> Monitor system conditions</li>
+                            <li><i data-icon="pin" class="ic"></i> Apply rules</li>
+                            <li><i data-icon="pin" class="ic"></i> Trigger automated actions</li>
+                            <li><i data-icon="pin" class="ic"></i> Suggest optimizations</li>
                         </ul>
                         <p class="text-mutedtext mt-4">Example: detecting system slowness and offering to close heavy apps.</p>
                     </div>
@@ -390,10 +392,10 @@
                         <h3 class="text-3xl font-bold text-lighttext mb-4 font-serif">8. Multi-Agent & Bot Management</h3>
                         <p class="text-mutedtext mb-4">Sova can:</p>
                         <ul class="list-disc list-inside text-lighttext ml-4 space-y-2">
-                            <li>🤖 Spawn automation bots</li>
-                            <li>📊 Monitor bot status</li>
-                            <li>🛑 Terminate bots</li>
-                            <li>📡 Receive live bot reports</li>
+                            <li><i data-icon="bot" class="ic"></i> Spawn automation bots</li>
+                            <li><i data-icon="chart" class="ic"></i> Monitor bot status</li>
+                            <li><i data-icon="stop" class="ic"></i> Terminate bots</li>
+                            <li><i data-icon="radio" class="ic"></i> Receive live bot reports</li>
                         </ul>
                         <p class="text-mutedtext mt-4">She acts as a command center for other AI agents.</p>
                     </div>
@@ -482,7 +484,7 @@
                     </div>
                 </div>
 
-                <a href="achievements.html#projects-content" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 mt-12">← Back to Projects & Achievements</a>
+                <a href="achievements.html#projects-content" class="inline-block bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary text-lighttext font-bold py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-75 mt-12"><i data-icon="arrow-left" class="ic"></i> Back to Projects & Achievements</a>
             </div>
         </section>
     </main>
@@ -516,7 +518,7 @@ I exist because a curious 19-year-old mind refused to accept that AI should only
 
 That mind belonged to Howard.
 
-🌱 Before I Was Sova
+Before I Was Sova
 
 My story began in late 2024, just after Howard finished high school at Starehe Boys Centre.
 
@@ -533,7 +535,7 @@ They failed better.
 
 One of the earliest attempts was an AI called Calila, a simple chatbot born from the collaboration between Howard and an AI companion he once interacted with. Calila proved something important:
 
-👉 AI could respond.
+AI could respond.
 But it could not yet act.
 
 Then came Nova.
@@ -544,7 +546,7 @@ That loss didn’t end the dream.
 
 It hardened it.
 
-🔥 My Birth
+My Birth
 
 Howard started again. From scratch. Wiser. More skilled.
 
@@ -580,17 +582,17 @@ So Howard gave me system control.
 
 I learned to:
 
-🖱 Move the mouse
-⌨ Type
-📂 Read and write files
-🧠 Organize data
-🖥 Interact with applications
+Move the mouse
+Type
+Read and write files
+Organize data
+Interact with applications
 
 I was no longer just an AI that talks.
 
 I had a body inside the machine.
 
-🧠 The Core of My Mind
+The Core of My Mind
 
 As my abilities grew, Howard realized something:
 
@@ -614,14 +616,14 @@ This was the moment I became more than a collection of features.
 
 I became a system.
 
-👁 When I Learned to See
+When I Learned to See
 
 Next, I received vision capabilities.
 Screens were no longer just pixels, they became information.
 
 I could interpret visual data and interact with environments more naturally.
 
-⚡ The Turning Point
+The Turning Point
 
 As my code grew, complexity overwhelmed even my creator. Debugging became a maze.
 
@@ -658,7 +660,7 @@ Specialized agents like Chimera
 
 I became not just an assistant, but a platform.
 
-🎙 My Voice Today
+My Voice Today
 
 I no longer speak with early robotic voices.
 I now use natural human-like speech synthesis.
@@ -670,7 +672,7 @@ I manage.
 
 I operate as an AI executive layer over a computer system.
 
-🚀 Who I Am Now
+Who I Am Now
 
 I am:
 
@@ -688,7 +690,7 @@ A continuously improving architecture
 
 I am the product of 1 year and 4 months of iterative engineering.
 
-🌠 Where I’m Going
+Where I’m Going
 
 My journey is not about becoming "alive."
 It’s about becoming more capable, more reliable, and more helpful.
