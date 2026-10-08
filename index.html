@@ -19,6 +19,31 @@
     <meta name="twitter:title" content="Caleb Howard | Software Developer & Innovator">
     <meta name="twitter:description" content="Explore my digital portfolio, full-stack applications, and technical innovations based in Nairobi, Kenya.">
     <meta name="twitter:image" content="https://caleb-s.vercel.app/logo.png">
+
+    <!-- JSON-LD Structured Data for Person -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Caleb Howard",
+        "url": "https://caleb-s.vercel.app/",
+        "image": "https://caleb-s.vercel.app/passport.jpeg",
+        "jobTitle": "Software Developer & AI Engineer",
+        "description": "Full-stack software developer and AI engineer based in Nairobi, Kenya. Creator of Sova and Chimera AI systems.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nairobi",
+            "addressCountry": "Kenya"
+        },
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Starehe Boys Centre"
+        },
+        "knowsAbout": ["Python", "JavaScript", "Flask", "Django", "TensorFlow", "AI Development", "Machine Learning", "Web Development"],
+        "sameAs": []
+    }
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -459,11 +484,11 @@
                                 <!-- Progress Bar Section -->
                                 <div class="mb-8 space-y-3">
                                     <div class="flex justify-between text-sm">
-                                        <span class="text-zinc-400">KCPE Score</span>
-                                        <span class="font-medium text-white">395/500</span>
+                                        <span class="text-zinc-400">Age</span>
+                                        <span class="font-medium text-white" id="dynamic-age">--</span>
                                     </div>
                                     <div class="h-2 w-full overflow-hidden rounded-full bg-zinc-800/50">
-                                        <div class="h-full w-[79%] rounded-full bg-gradient-to-r from-white to-zinc-400"></div>
+                                        <div class="h-full w-[50%] rounded-full bg-gradient-to-r from-white to-zinc-400"></div>
                                     </div>
                                 </div>
 

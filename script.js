@@ -269,6 +269,19 @@ function setupImageLightbox(triggerSelector, lightboxId, imageId, closeBtnId) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Dynamic Age Calculation ---
+    const ageElement = document.getElementById('dynamic-age');
+    if (ageElement) {
+        const birthDate = new Date(2006, 2, 8); // March 8, 2006 (month is 0-indexed)
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        ageElement.textContent = age;
+    }
+
     // --- Chimera Page Specific Setup ---
     // Check if on chimera.html by looking for a unique ID on the body or the audio element
     if (document.body.id === 'chimera-page' && document.getElementById('open-narration-modal') && document.getElementById('chimera-audio')) {
