@@ -936,5 +936,17 @@
             });
         })();
     </script>
+    <script>
+        // Live age from date of birth (8 March 2006)
+        (function () {
+            var el = document.getElementById('dynamic-age');
+            if (!el) return;
+            var dob = new Date(2006, 2, 8), now = new Date();
+            var age = now.getFullYear() - dob.getFullYear();
+            var m = now.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && now.getDate() < dob.getDate())) age--;
+            el.textContent = age + ' years';
+        })();
+    </script>
 </body>
 </html>
